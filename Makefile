@@ -3,7 +3,7 @@ BUILD = test
 
 test: main.o libmsdoc.so
 	$(CXX) -L. main.o -lmsdoc -o test
-	LD_LIBRARY_PATH="/disk/projects/libmsdoc" ./test
+	LD_LIBRARY_PATH="." ./test
 
 all: $(BUILD)
 
