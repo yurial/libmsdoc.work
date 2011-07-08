@@ -1,11 +1,21 @@
 #ifndef CSHAREDSTRINGH
-#define CShAREDSTRINGH
+#define CSHAREDSTRINGH
 
+#include <map>
+
+class CSharedString;
 typedef CSharedString TSharedString;
 
-class CSharedString
-{
+#include "csharedstringobject.h"
 
+class CSharedString:
+    public std::map<TSharedStringObject,int>::iterator
+{
+protected:
+typedef std::map<TSharedStringObject,int>::iterator base;
+
+public:
+        CSharedString(const base& it);
 };
 
 #endif

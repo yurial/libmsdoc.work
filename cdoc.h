@@ -1,7 +1,8 @@
 #ifndef CDOCH
 #define CDOCH
 
-class CDoc TDoc;
+class CDoc;
+typedef CDoc TDoc;
 
 class CDoc
 {

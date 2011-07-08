@@ -1,11 +1,14 @@
 #ifndef CFORMULAH
 #define CFORMULAH
 
+class CFormula;
 typedef CFormula TFormula;
 
-class CFormula
-{
+#include "cstring.h"
 
+class CFormula:
+    public TString
+{
 };
 
 #endif

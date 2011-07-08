@@ -1,11 +1,27 @@
 #ifndef CSPREADSHEETSH
 #define CSPREADSHEETSH
 
-typedef CSpreadSheets TSpreadSheet;
+#include <list>
 
-class CSpreadSheets
+class CSpreadSheets;
+typedef CSpreadSheets TSpreadSheets;
+
+#include "cspreadsheet.h"
+
+class CSpreadSheets:
+    protected std::list<TSpreadSheetObject>
 {
+protected:
+typedef std::list<TSpreadSheetObject> base;
 
+public:
+                CSpreadSheets();
+                ~CSpreadSheets();
+
+TSpreadSheet    add();
+TSpreadSheet    add(const TString& name);
+void            erase(TSpreadSheet& spreadsheet);
+using           base::size;
 };
 
 #endif
