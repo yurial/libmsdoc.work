@@ -11,13 +11,17 @@ typedef CSharedString TSharedString;
 class CSharedString:
     public std::map<TSharedStringObject,int>::iterator
 {
+private:
+/* you can't do that */
+CSharedString&  operator = (const CSharedString&);
+
 protected:
 typedef std::map<TSharedStringObject,int>::iterator base;
 using   base::operator ->;
 
 public:
-        CSharedString(const base& it);
-int     id();
+                CSharedString(const base& it);
+int             id();
 };
 
 #endif

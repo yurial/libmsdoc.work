@@ -10,11 +10,14 @@ typedef CSharedStringObject TSharedStringObject;
 class CSharedStringObject:
     public std::string
 {
+private:
+CSharedStringObject& operator = (const CSharedStringObject&);
+
 protected:
 
 public:
-    CSharedStringObject(const TString& string);
-    CSharedStringObject(const TFormula& formula);
+        CSharedStringObject(const TString& string);
+        CSharedStringObject(const TFormula& formula);
 };
 
 #endif

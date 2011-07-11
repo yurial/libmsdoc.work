@@ -11,10 +11,16 @@ typedef CSharedStrings TSharedStrings;
 class CSharedStrings:
     protected std::map<TSharedStringObject,int>
 {
+private:
+/* you can't do that */
+                CSharedStrings(const CSharedStrings&);
+CSharedStrings& operator = (const CSharedStrings&);
+
 protected:
 typedef std::map<TSharedStringObject,int> base;
 
 public:
+                CSharedStrings();
 
 TSharedString   add(const TString& string);
 TSharedString   add(const TFormula& formula);

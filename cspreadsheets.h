@@ -11,6 +11,11 @@ typedef CSpreadSheets TSpreadSheets;
 class CSpreadSheets:
     protected std::list<TSpreadSheetObject>
 {
+private:
+/* you can't do that */
+                CSpreadSheets(const CSpreadSheets&);
+CSpreadSheets&  operator = (const CSpreadSheets&);
+
 protected:
 typedef std::list<TSpreadSheetObject> base;
 

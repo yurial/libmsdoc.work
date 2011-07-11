@@ -1,5 +1,9 @@
 #include "csharedstrings.h"
 
+CSharedStrings::CSharedStrings()
+{
+}
+
 TSharedString CSharedStrings::add(const TString& string)
 {
 std::pair<base::iterator,bool> result = insert( std::make_pair( TSharedStringObject( string ), size() ) );

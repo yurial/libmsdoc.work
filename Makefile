@@ -10,7 +10,7 @@ all: $(BUILD)
 clean:
 	rm -rf *.o *.so
 
-OBJ = cformula.o csharedstrings.o csharedstring.o csharedstringobject.o cspreadsheets.o cspreadsheet.o cspreadsheetobject.o
+OBJ = ccell.o ccellobject.o crow.o crowobject.o cformula.o csharedstrings.o csharedstring.o csharedstringobject.o cspreadsheets.o cspreadsheet.o cspreadsheetobject.o
 CXXFLAGS = -g -fPIC
 
 %.so: ${OBJ}

@@ -5,6 +5,11 @@ CSpreadSheet::CSpreadSheet(const std::list<CSpreadSheetObject>::iterator& it):
 {
 }
 
+TRow CSpreadSheet::operator [] (int index)
+{
+return (*this)->operator [] ( index );
+}
+
 TString& CSpreadSheet::name()
 {
 return (*this)->name();
