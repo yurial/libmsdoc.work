@@ -9,6 +9,8 @@ typedef CFormula TFormula;
 class CFormula:
     public TString
 {
+public:
+    CFormula(const TString& formula);
 };
 
 #endif

@@ -14,6 +14,11 @@ return result.first;
 
 void CSharedStrings::erase(TSharedString& sharedstring)
 {
+base::iterator pos = sharedstring;
+while ( --pos != end() )
+    {
+    --pos->second;
+    }
 base::erase( sharedstring );
 }
 

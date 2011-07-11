@@ -13,9 +13,11 @@ class CSharedString:
 {
 protected:
 typedef std::map<TSharedStringObject,int>::iterator base;
+using   base::operator ->;
 
 public:
         CSharedString(const base& it);
+int     id();
 };
 
 #endif

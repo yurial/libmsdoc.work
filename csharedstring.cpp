@@ -5,3 +5,8 @@ CSharedString::CSharedString(const base& it):
 {
 }
 
+int CSharedString::id()
+{
+return (*this)->second;
+};
+
