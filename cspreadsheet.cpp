@@ -1,6 +1,6 @@
 #include "cspreadsheet.h"
 
-CSpreadSheet::CSpreadSheet(const std::list<CSpreadSheetObject>::iterator& it):
+CSpreadSheet::CSpreadSheet(const base& it):
     base( it )
 {
 }
@@ -10,8 +10,8 @@ TRow CSpreadSheet::operator [] (int index)
 return (*this)->operator [] ( index );
 }
 
-TString& CSpreadSheet::name()
+CSpreadSheet::operator IWorkBookList& ()
 {
-return (*this)->name();
+return this->operator *();
 }
 

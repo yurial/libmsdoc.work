@@ -1,0 +1,40 @@
+#include <sstream>
+#include "crelationships.h"
+
+TString g_reltypes[] = {
+"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument",
+"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet",
+};
+
+TRelationShip CRelationShips::insert(const IRelationObject* object)
+{
+return base::insert( base::end(), TRelationShipObject( object, base::size()+1 ) );
+}
+
+int CRelationShips::save(TZip& archive, const TString& filename) const
+{
+std::stringstream content;
+content << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
+content << "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">\n";
+base::const_iterator it = base::begin();
+base::const_iterator end = base::end();
+for (;it != end; ++it)
+    {
+    content << "<Relationship Id=\"rId" << it->rid() << "\" Type=\"" << g_reltypes[it->type()] << "\" Target=\"/" << it->filename() << "\"/>\n";
+    }
+content << "</Relationships>";
+archive.add_file( filename, content.str() );
+return 0;
+}
+
+void CRelationShips::erase(TRelationShip& relationship)
+{
+base::iterator it = relationship;
+base::iterator end = base::end();
+while (++it != end)
+    {
+    --(*it);
+    }
+base::erase( relationship );
+}
+

@@ -11,7 +11,7 @@ typedef CCell TCell;
 typedef std::map<int,TCellObject> TCells;
 
 class CCell:
-    protected TCells::iterator
+    public TCells::iterator
 {
 private:
 

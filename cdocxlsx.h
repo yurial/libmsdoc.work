@@ -4,14 +4,21 @@
 class CDocXLSX;
 typedef CDocXLSX TDocXLSX;
 
-#include "cspreadsheets.h"
-#include "csharedstrings.h"
+#include "cdoc.h"
+#include "cworkbook.h"
 
-class CDocXLSX
+class CDocXLSX:
+    public TDoc
 {
 public:
-TSpreadSheets   m_spreadsheets;
-TSharedStrings  m_sharedstrings;
+TWorkBook   m_workbook;
+
+protected:
+typedef TDoc base;
+
+public:
+        CDocXLSX();
+int     save(const TString& filename) const;
 };
 
 #endif

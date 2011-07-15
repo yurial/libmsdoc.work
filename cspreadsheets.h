@@ -7,6 +7,9 @@ class CSpreadSheets;
 typedef CSpreadSheets TSpreadSheets;
 
 #include "cspreadsheet.h"
+#include "cspreadsheetobject.h"
+#include "ccontent.h"
+#include "crelationships.h"
 
 class CSpreadSheets:
     protected std::list<TSpreadSheetObject>
@@ -18,13 +21,15 @@ CSpreadSheets&  operator = (const CSpreadSheets&);
 
 protected:
 typedef std::list<TSpreadSheetObject> base;
+TString         m_dir;
+TRelationShips& m_relationships;
 
 public:
-                CSpreadSheets();
+                CSpreadSheets(const TString& dir, TRelationShips& relationships);
                 ~CSpreadSheets();
+int             save(TZip& archive, TContent& content) const;
 
-TSpreadSheet    add();
-TSpreadSheet    add(const TString& name);
+TSpreadSheet    insert();
 void            erase(TSpreadSheet& spreadsheet);
 using           base::size;
 };

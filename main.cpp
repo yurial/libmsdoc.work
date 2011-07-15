@@ -8,27 +8,30 @@ int main()
 {
 /* create document */
 TDocXLSX doc;
+TWorkBook& book = doc.m_workbook;
 /* create new sheet */
-TSpreadSheet sheet = doc.m_spreadsheets.add( "Shit1" );
-/*  */
-sheet.name() = "Sheet1";
+TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
 /* add new shared string */
-TSharedString str = doc.m_sharedstrings.add( "text" );
+TSharedString str = book.m_sharedstrings.insert( "text" );
 /* add new shared formula */
-TSharedString frm = doc.m_sharedstrings.add( TFormula( "=A1+B2" ) );
+TSharedString frm = book.m_sharedstrings.insert( TFormula( "=A1+B2" ) );
 
 /* get row */
-TRow row0 = sheet[ 0 ];
+TRow row0 = sheet1[ 0 ];
 /* get cell */
 TCell cell01 = row0[ 1 ];
 /* set shared string */
 cell01 = str;
 /* set simple string */
-sheet[ 1 ][ "A" ] = "qwe";
+sheet1[ 1 ][ "A" ] = "qwe";
 /* set shared formula */
-sheet[ 1 ][ 2 ] = frm;
+sheet1[ 1 ][ 2 ] = frm;
 
-return 0;
+//TSpreadSheet sheet2 = book.m_spreadsheets.insert( "sheet2" );
+
+book.insert( sheet1, "Sheet1" );
+book.insert( sheet1, "Sheet2" );
+return doc.save( "test.zip" );
 };
 

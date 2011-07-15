@@ -11,7 +11,7 @@ typedef CRow TRow;
 typedef std::map<int,TRowObject> TRows;
 
 class CRow:
-    protected TRows::iterator
+    public TRows::iterator
 {
 private:
 /* you can't do that */

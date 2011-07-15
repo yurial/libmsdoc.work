@@ -22,8 +22,8 @@ typedef std::map<TSharedStringObject,int> base;
 public:
                 CSharedStrings();
 
-TSharedString   add(const TString& string);
-TSharedString   add(const TFormula& formula);
+TSharedString   insert(const TString& string);
+TSharedString   insert(const TFormula& formula);
 void            erase(TSharedString& sharedstring);
 using           base::size;
 };

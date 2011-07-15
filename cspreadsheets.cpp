@@ -1,20 +1,35 @@
+#include <sstream>
+
 #include "cspreadsheets.h"
 
-CSpreadSheets::CSpreadSheets()
-{
+CSpreadSheets::CSpreadSheets(const TString& dir, TRelationShips& relationships):
+    m_dir( dir ), m_relationships( relationships ){
 }
 
 CSpreadSheets::~CSpreadSheets()
 {
 }
 
-TSpreadSheet CSpreadSheets::add()
+int CSpreadSheets::save(TZip& archive, TContent& content) const
 {
-return insert( end(), TSpreadSheetObject() );
+archive.add_dir( m_dir );
+base::const_iterator it = base::begin();
+base::const_iterator end = base::end();
+for (; it != end; ++it)
+    {
+    it->save( archive, content );
+    //TODO: ret
+    }
+return 0;
 }
 
-TSpreadSheet CSpreadSheets::add(const TString& name)
+TSpreadSheet CSpreadSheets::insert()
 {
-return insert( end(), TSpreadSheetObject( name ) );
+return base::insert( end(), TSpreadSheetObject( m_dir, m_relationships ) );
+}
+
+void CSpreadSheets::erase(TSpreadSheet& spreadsheet)
+{
+base::erase( spreadsheet );
 }
 

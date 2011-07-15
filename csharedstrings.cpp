@@ -4,24 +4,25 @@ CSharedStrings::CSharedStrings()
 {
 }
 
-TSharedString CSharedStrings::add(const TString& string)
+TSharedString CSharedStrings::insert(const TString& string)
 {
-std::pair<base::iterator,bool> result = insert( std::make_pair( TSharedStringObject( string ), size() ) );
+std::pair<base::iterator,bool> result = base::insert( std::make_pair( TSharedStringObject( string ), size() ) );
 return result.first;
 }
 
-TSharedString CSharedStrings::add(const TFormula& formula)
+TSharedString CSharedStrings::insert(const TFormula& formula)
 {
-std::pair<base::iterator,bool> result = insert( std::make_pair( TSharedStringObject( formula ), size() ) );
+std::pair<base::iterator,bool> result = base::insert( std::make_pair( TSharedStringObject( formula ), size() ) );
 return result.first;
 }
 
 void CSharedStrings::erase(TSharedString& sharedstring)
 {
-base::iterator pos = sharedstring;
-while ( --pos != end() )
+base::iterator it = sharedstring;
+base::iterator end = base::end();
+while ( ++it != end )
     {
-    --pos->second;
+    --(it->second);
     }
 base::erase( sharedstring );
 }

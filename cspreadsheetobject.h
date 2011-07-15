@@ -7,23 +7,37 @@ class CSpreadSheetObject;
 typedef CSpreadSheetObject TSpreadSheetObject;
 
 #include "cstring.h"
+#include "crelationships.h"
+#include "iworkbooklist.h"
+#include "cspreadsheets.h"
 #include "crow.h"
 
-class CSpreadSheetObject
+class CSpreadSheetObject:
+    public IRelationObject,
+    public IWorkBookList
 {
 private:
 /* you can't do that */
 CSpreadSheetObject& operator = (const CSpreadSheetObject&);
 
 protected:
-TString     m_name;
-TRows       m_rows;
+TRelationShips& m_relationships;
+TRelationShip   m_relationship;
+TRows           m_rows;
+TString         m_dir;
 
 public:
-            CSpreadSheetObject();
-            CSpreadSheetObject(const TString& name);
-TRow        operator [] (int index);
-TString&    name();
+                CSpreadSheetObject(const TString& dir, TRelationShips& relationships);
+                CSpreadSheetObject(const CSpreadSheetObject& origin);
+                ~CSpreadSheetObject();
+
+TRow            operator [] (int index);
+
+int             save(TZip& archive, TContent& content) const;
+
+const TString   filename() const;
+ERELTYPE        type() const;
+int             rid() const;
 };
 
 #endif

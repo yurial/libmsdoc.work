@@ -6,10 +6,13 @@
 class CSpreadSheet;
 typedef CSpreadSheet TSpreadSheet;
 
+#include "ccontent.h"
+#include "cspreadsheets.h"
 #include "cspreadsheetobject.h"
+#include "crow.h"
 
 class CSpreadSheet:
-    protected std::list<CSpreadSheetObject>::iterator
+    public std::list<CSpreadSheetObject>::iterator
 {
 private:
 /* you can't do that */
@@ -24,7 +27,7 @@ public:
 
 TRow            operator [] (int index);
 
-TString&        name();
+                operator IWorkBookList& ();
 };
 
 #endif
