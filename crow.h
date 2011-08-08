@@ -1,14 +1,13 @@
 #ifndef CROWH
 #define CROWH
 
-#include <map>
+#include <sstream>
 
 class CRow;
 typedef CRow TRow;
 
 #include "cstring.h"
 #include "crowobject.h"
-typedef std::map<int,TRowObject> TRows;
 
 class CRow:
     public TRows::iterator
@@ -26,6 +25,8 @@ public:
 
 TCell   operator [] (int index);
 TCell   operator [] (const TString& name);
+
+int     save(std::stringstream& sheet) const;
 };
 
 #endif

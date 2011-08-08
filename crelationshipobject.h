@@ -8,7 +8,7 @@ typedef CRelationShipObject TRelationShipObject;
 
 class CRelationShipObject
 {
-public:
+protected:
 int                     m_rid;
 const IRelationObject*  m_object;
 

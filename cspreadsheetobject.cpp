@@ -18,7 +18,7 @@ m_relationships.erase( m_relationship );
 
 TRow CSpreadSheetObject::operator [] (int index)
 {
-std::pair<TRows::iterator,bool> row = m_rows.insert( std::make_pair( index, TRowObject() ) );
+std::pair<TRows::iterator,bool> row = m_rows.insert( std::make_pair( index, TRowObject( index ) ) );
 return row.first;
 }
 
@@ -32,15 +32,13 @@ sheet << "xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" >"
 //sheet << "xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">\n";
 //TODO default settings
 sheet << "<sheetData>\n";
-//m_rows.save();
-sheet << "<row>\n";
-sheet << "<c>\n";
-sheet << "<f>B1+C1</f>\n";
-sheet << "<v></v>\n";
-sheet << "</c>\n";
-sheet << "<c><v>1</v></c>\n";
-sheet << "<c><v>2</v></c>\n";
-sheet << "</row>\n";
+//rows
+TRows::const_iterator it = m_rows.begin();
+TRows::const_iterator end = m_rows.end();
+for (; it != end; ++it)
+    {
+    it->second.save( sheet );
+    }
 
 sheet << "</sheetData>\n";
 sheet << "</worksheet>\n";

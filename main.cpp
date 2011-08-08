@@ -31,7 +31,6 @@ sheet1[ 1 ][ 2 ] = frm;
 //TSpreadSheet sheet2 = book.m_spreadsheets.insert( "sheet2" );
 
 book.insert( sheet1, "Sheet1" );
-book.insert( sheet1, "Sheet2" );
 return doc.save( "test.zip" );
 };
 

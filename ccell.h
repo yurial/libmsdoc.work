@@ -1,14 +1,11 @@
 #ifndef CCELLH
 #define CCELLH
 
-#include <map>
-
 class CCell;
 typedef CCell TCell;
 
 #include "csharedstring.h"
 #include "ccellobject.h"
-typedef std::map<int,TCellObject> TCells;
 
 class CCell:
     public TCells::iterator

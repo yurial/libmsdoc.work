@@ -15,4 +15,8 @@ TCell CRow::operator [] (const TString& name)
 return (*this)->second.operator [] ( name );
 }
 
+int CRow::save(std::stringstream& sheet) const
+{
+return (*this)->second.save( sheet );
+}
 

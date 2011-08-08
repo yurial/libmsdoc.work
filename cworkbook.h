@@ -21,15 +21,16 @@ private:
 CWorkBook(const CWorkBook&);
 CWorkBook& operator = (const CWorkBook&);
 
-public:
+protected:
+typedef std::list<TWorkBookListObject> base;
+
 TString         m_dir;
 TRelationShip   m_relationship;
 TRelationShips  m_relationships;
+
+public:
 TSpreadSheets   m_spreadsheets;
 TSharedStrings  m_sharedstrings;
-
-protected:
-typedef std::list<TWorkBookListObject> base;
 
 public:
                 CWorkBook(const TString& dir, TRelationShips& relationships);
