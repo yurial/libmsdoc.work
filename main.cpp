@@ -9,6 +9,8 @@ int main()
 /* create document */
 TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
+book.begin();
+book.end();
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 

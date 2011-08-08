@@ -6,6 +6,16 @@ CWorkBook::CWorkBook(const TString& dir, TRelationShips& relationships):
 {
 }
 
+TWorkBookList CWorkBook::begin()
+{
+return base::begin();
+}
+
+TWorkBookList CWorkBook::end()
+{
+return base::end();
+}
+
 TWorkBookList CWorkBook::insert(IWorkBookList& list, const TString& name)
 {
 return base::insert( base::end(), TWorkBookListObject( &list, name ) );
