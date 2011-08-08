@@ -14,10 +14,10 @@ private:
 CSharedStringObject& operator = (const CSharedStringObject&);
 
 protected:
+using std::string::operator =;
 
 public:
         CSharedStringObject(const TString& string);
-        CSharedStringObject(const TFormula& formula);
 };
 
 #endif

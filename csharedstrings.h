@@ -23,7 +23,6 @@ public:
                 CSharedStrings();
 
 TSharedString   insert(const TString& string);
-TSharedString   insert(const TFormula& formula);
 void            erase(TSharedString& sharedstring);
 using           base::size;
 };

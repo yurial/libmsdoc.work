@@ -32,6 +32,7 @@ TString         col() const;
 TString         cell() const;
 
 CCellObject&    operator = (const TString& str);
+CCellObject&    operator = (const TFormula& frm);
 CCellObject&    operator = (const TSharedString& str);
 
 int             save(std::stringstream& row) const;

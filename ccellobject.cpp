@@ -116,6 +116,12 @@ m_str = new TString( str );
 return *this;
 }
 
+CCellObject& CCellObject::operator = (const TFormula& str)
+{
+//TODO: formula
+return *this;
+}
+
 CCellObject& CCellObject::operator = (const TSharedString& str)
 {
 if ( NULL != m_str )

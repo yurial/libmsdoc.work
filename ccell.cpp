@@ -11,6 +11,12 @@ CCell& CCell::operator = (const TString& str)
 return *this;
 }
 
+CCell& CCell::operator = (const TFormula& frm)
+{
+(*this)->second.operator = ( frm );
+return *this;
+}
+
 CCell& CCell::operator = (const TSharedString& str)
 {
 (*this)->second.operator = ( str );

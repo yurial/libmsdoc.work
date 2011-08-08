@@ -7,7 +7,7 @@ typedef CFormula TFormula;
 #include "cstring.h"
 
 class CFormula:
-    public TString
+    protected TString
 {
 public:
     CFormula(const TString& formula);

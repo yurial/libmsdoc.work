@@ -10,12 +10,6 @@ std::pair<base::iterator,bool> result = base::insert( std::make_pair( TSharedStr
 return result.first;
 }
 
-TSharedString CSharedStrings::insert(const TFormula& formula)
-{
-std::pair<base::iterator,bool> result = base::insert( std::make_pair( TSharedStringObject( formula ), size() ) );
-return result.first;
-}
-
 void CSharedStrings::erase(TSharedString& sharedstring)
 {
 base::iterator it = sharedstring;
