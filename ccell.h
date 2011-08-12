@@ -20,9 +20,11 @@ using base::operator ->;
 public:
         CCell(const base& it);
 
-CCell&  operator = (const TString& str);
-CCell&  operator = (const TFormula& frm);
-CCell&  operator = (const TSharedString& str);
+CCell&  operator = (const TString& string);
+CCell&  operator = (const TSharedString& sharedstring);
+CCell&  operator = (const TFormula& formula);
+CCell&  operator = (const int value);
+CCell&  operator = (const double value);
 };
 
 #endif

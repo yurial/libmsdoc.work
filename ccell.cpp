@@ -5,21 +5,33 @@ CCell::CCell(const base& it):
 {
 }
 
-CCell& CCell::operator = (const TString& str)
+CCell& CCell::operator = (const TString& string)
 {
-(*this)->second.operator = ( str );
+(*this)->second.operator = ( string );
 return *this;
 }
 
-CCell& CCell::operator = (const TFormula& frm)
+CCell& CCell::operator = (const TSharedString& sharedstring)
 {
-(*this)->second.operator = ( frm );
+(*this)->second.operator = ( sharedstring );
 return *this;
 }
 
-CCell& CCell::operator = (const TSharedString& str)
+CCell& CCell::operator = (const TFormula& formula)
 {
-(*this)->second.operator = ( str );
+(*this)->second.operator = ( formula );
+return *this;
+}
+
+CCell& CCell::operator = (const int value)
+{
+(*this)->second.operator = ( value );
+return *this;
+}
+
+CCell& CCell::operator = (const double value)
+{
+(*this)->second.operator = ( value );
 return *this;
 }
 

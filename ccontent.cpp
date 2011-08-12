@@ -4,7 +4,7 @@
 TString g_contenttypes[] = {
 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml",
 "application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml",
-"sharedstring",
+"application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml",
 "application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"
 };
 

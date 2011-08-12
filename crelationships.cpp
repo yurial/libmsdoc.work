@@ -4,6 +4,7 @@
 TString g_reltypes[] = {
 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument",
 "http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet",
+"http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings",
 };
 
 TRelationShip CRelationShips::insert(const IRelationObject* object)

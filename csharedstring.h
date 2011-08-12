@@ -21,7 +21,7 @@ using   base::operator ->;
 
 public:
                 CSharedString(const base& it);
-int             id();
+int             id() const;
 };
 
 #endif

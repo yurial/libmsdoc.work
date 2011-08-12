@@ -17,18 +17,23 @@ TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 /* add new shared string */
 TSharedString str = book.m_sharedstrings.insert( "text" );
 /* add new shared formula */
-TFormula frm( "=A1+B2" );
+TFormula frm( "=A1+B1" );
 
 /* get row */
 TRow row0 = sheet1[ 0 ];
 /* get cell */
-TCell cell01 = row0[ 1 ];
+TCell cell01 = row0[ 3 ];
 /* set shared string */
 cell01 = str;
+row0[ "E" ] = str;
+/* set int */
+sheet1[ 0 ][ "A" ] = 1;
+/* set double */
+sheet1[ 0 ][ "B" ] = 1.5;
 /* set simple string */
 sheet1[ 1 ][ "A" ] = "qwe";
-/* set shared formula */
-sheet1[ 1 ][ 2 ] = frm;
+/* set formula */
+sheet1[ 0 ][ "C" ] = frm;
 
 //TSpreadSheet sheet2 = book.m_spreadsheets.insert( "sheet2" );
 

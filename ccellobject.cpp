@@ -61,26 +61,10 @@ return index;
 CCellObject::CCellObject(TRowObject& row, int id):
     m_row( row ), m_id( id )
 {
-m_shastr = NULL;
-m_str = NULL;
 }
 
 CCellObject::~CCellObject()
 {
-if ( NULL != m_str )
-    {
-    delete m_str;
-    #ifdef DEBUG
-    m_str = NULL;
-    #endif
-    }
-if ( NULL != m_shastr )
-    {
-    delete m_shastr;
-    #ifdef DEBUG
-    m_shastr = NULL;
-    #endif
-    }
 }
 
 int CCellObject::id() const
@@ -100,46 +84,38 @@ str << col() << m_row.row();
 return str.str();
 }
 
-CCellObject& CCellObject::operator = (const TString& str)
-{
-
-if ( NULL != m_str )
-    {
-    delete m_str;
-    }
-if ( NULL != m_shastr )
-    {
-    delete m_shastr;
-    m_shastr = NULL;
-    }
-m_str = new TString( str );
-return *this;
-}
-
-CCellObject& CCellObject::operator = (const TFormula& str)
-{
-//TODO: formula
-return *this;
-}
-
-CCellObject& CCellObject::operator = (const TSharedString& str)
-{
-if ( NULL != m_str )
-    {
-    delete m_str;
-    m_str = NULL;
-    }
-if ( NULL != m_shastr )
-    {
-    delete m_shastr;
-    }
-m_shastr = new TSharedString( str );
-return *this;
-}
-
 int CCellObject::save(std::stringstream& row) const
 {
-row << "<c r=\"" << cell() << "\"><v>1</v></c>";
+switch ( TCellValue::m_type )
+    {
+    case ECV_STRING:
+        {
+        row << "<c r=\"" << cell() << "\" t=\"inlineStr\"><is><t>" << *(const TString*)TCellValue::m_value << "</t></is></c>";
+        }
+        break;
+    case ECV_SHAREDSTRING:
+        {
+        row << "<c r=\"" << cell() << "\" t=\"s\"><v>" << ((const TSharedString*)TCellValue::m_value)->id() << "</v></c>";
+        }
+        break;
+    case ECV_FORMULA:
+        {
+        row << "<c r=\"" << cell() << "\"><f>" << ((const TFormula*)TCellValue::m_value)->c_str() << "</f></c>";
+        }
+        break;
+    case ECV_INT:
+        {
+        row << "<c r=\"" << cell() << "\"><v>" << *(const int*)TCellValue::m_value << "</v></c>";
+        }
+        break;
+    case ECV_DOUBLE:
+        {
+        row << "<c r=\"" << cell() << "\"><v>" << *(const double*)TCellValue::m_value << "</v></c>";
+        }
+        break;
+    case ECV_NONE:
+        break;
+    }
 return 0;
 }
 

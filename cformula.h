@@ -11,6 +11,7 @@ class CFormula:
 {
 public:
     CFormula(const TString& formula);
+    using TString::c_str;
 };
 
 #endif

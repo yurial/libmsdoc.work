@@ -28,7 +28,7 @@ content.insert( filename(), ECT_SPREADSHEET );
 std::stringstream sheet;
 sheet << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 sheet << "<worksheet ";
-sheet << "xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" >";
+sheet << "xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">";
 //sheet << "xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">\n";
 //TODO default settings
 sheet << "<sheetData>\n";
