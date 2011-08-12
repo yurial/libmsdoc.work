@@ -1,21 +1,34 @@
+CXXFLAGS = -g -fPIC -Wall
 BUILD = test
+
 .PHONY: all $(BUILD) clean
-
-test: main.o libmsdoc.so Makefile
-	$(CXX) -L. main.o -lzip -lmsdoc -o test
-	rm -f test.zip
-	LD_LIBRARY_PATH="." ./test
-
 all: $(BUILD)
+$(BUILD): depend $(BUILD:=.o) $(OBJ) Makefile
 
-clean:
-	rm -rf *.o *.so
+OBJ = czip.o cdoc.o cdocxlsx.o crelationships.o crelationship.o crelationshipobject.o ccontent.o cworkbook.o cworkbooklist.o cworkbooklistobject.o ccell.o ccellobject.o ccellvalue.o crow.o crowobject.o cformula.o csharedstrings.o csharedstring.o csharedstringobject.o cspreadsheets.o cspreadsheet.o cspreadsheetobject.o
 
-OBJ = czip.o cdoc.o cdocxlsx.o crelationships.o crelationship.o crelationshipobject.o ccontent.o cworkbook.o cworkbooklist.o cworkbooklistobject.o ccell.o ccellobject.o crow.o crowobject.o cformula.o csharedstrings.o csharedstring.o csharedstringobject.o cspreadsheets.o cspreadsheet.o cspreadsheetobject.o
-CXXFLAGS = -g -fPIC
+include $(wildcard *.d)
 
-%.o: Makefile
+DEPS=$(OBJ:%.o=%.d)
+depend: Makefile $(DEPS)
+
+%.d: %.cpp
+	echo -n "$@ " > $@
+	($(CXX) -MM $< || rm $@) |tr -d '\\\n' >>$@
+
+%.o: %.cpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
+
+${OBJ}: Makefile
 
 %.so: Makefile ${OBJ} 
 	$(CXX) ${CXXFLAGS} ${OBJ} -shared -o $@
 
+test: libmsdoc.so
+	$(CXX) -L. test.o -lzip -lmsdoc -o test
+	rm -f test.zip
+	LD_LIBRARY_PATH="." ./test
+
+
+clean:
+	rm -rf *.d *.o *.so
