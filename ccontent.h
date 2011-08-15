@@ -1,6 +1,7 @@
 #ifndef CCONTENTTYPEH
 #define CCONTENTTYPEH
 
+#include <map>
 #include <list>
 
 class CContent;
@@ -45,18 +46,21 @@ TString         m_namespace;
 TString         m_relationship;
 };
 
-struct SContent
+typedef std::map<ECONTENTTYPE,SContentType> TContentTypes;
+extern TContentTypes g_contenttypes;
+
+struct SContentObject
 {
 TString         m_filename;
 ECONTENTTYPE    m_type;
-                SContent(const TString& filename, ECONTENTTYPE type);
+                SContentObject(const TString& filename, ECONTENTTYPE type);
 };
 
 class CContent:
-    protected std::list<SContent>
+    protected std::list<SContentObject>
 {
 protected:
-typedef std::list<SContent> base;
+typedef std::list<SContentObject> base;
 
 public:
 void    insert(const TString& filename, ECONTENTTYPE type);

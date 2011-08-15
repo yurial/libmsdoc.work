@@ -1,12 +1,7 @@
 #include <sstream>
+#include <map>
 #include "ccontent.h"
-
-TString g_contenttypes[] = {
-"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml",
-"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml",
-"application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml",
-"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"
-};
+#include "cinitializer.h"
 
 SContentType CONTENT_TYPES[] = {
     { ECT_WORKBOOK,                         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml",   "http://schemas.openxmlformats.org/spreadsheetml/2006/main", "http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" },
@@ -35,14 +30,26 @@ SContentType CONTENT_TYPES[] = {
     { ECT_VOLATILE_DEPENDENCIES,            "application/vnd.openxmlformats-officedocument.spreadsheetml.volatileDependencies+xml", "http://schemas.openxmlformats.org/spreadsheetml/2006/main", "http://schemas.openxmlformats.org/officeDocument/2006/relationships/volatileDependencies" },
 };
 
-SContent::SContent(const TString& filename, ECONTENTTYPE type):
+TContentTypes g_contenttypes;
+
+static void content_init_f()
+{
+for (unsigned int index = 0; index < sizeof(CONTENT_TYPES)/sizeof(SContentType); ++index)
+    {
+    g_contenttypes.insert( std::make_pair( CONTENT_TYPES[index].m_id, CONTENT_TYPES[index] ) );
+    }
+}
+
+static CInitializer content_init( content_init_f );
+
+SContentObject::SContentObject(const TString& filename, ECONTENTTYPE type):
     m_filename( filename ), m_type( type )
 {
 }
 
 void CContent::insert(const TString& filename, ECONTENTTYPE type)
 {
-base::push_back( SContent( filename, type ) );
+base::push_back( SContentObject( filename, type ) );
 }
 
 int CContent::save(TZip& archive) const
@@ -57,7 +64,7 @@ base::const_iterator end = base::end();
 for (; it != end; ++it)
     {
     content << "<Override PartName=\"/" << it->m_filename << '"';
-    content << " ContentType=\"" << g_contenttypes[it->m_type] << "\"/>\n";
+    content << " ContentType=\"" << g_contenttypes[it->m_type].m_type << "\"/>\n";
     }
 content << "</Types>\n";
 int ret = archive.add_file( "[Content_Types].xml", content.str() );
