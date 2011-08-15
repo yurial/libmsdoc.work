@@ -8,7 +8,7 @@ CSharedStrings::CSharedStrings(const TString& dir, TRelationShips& relationships
 
 int CSharedStrings::save(TZip& archive, TContent& content) const
 {
-content.insert( filename(), ECT_SHAREDSTRINGS );
+content.insert( filename(), ECT_SHARED_STRING_TABLE );
 std::stringstream sharedstrings;
 sharedstrings << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 sharedstrings << "<sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">\n";

@@ -31,6 +31,7 @@ TRelationShips  m_relationships;
 public:
 TSpreadSheets   m_spreadsheets;
 TSharedStrings  m_sharedstrings;
+//TStyleSheet     m_stylesheet;
 
 public:
                 CWorkBook(const TString& dir, TRelationShips& relationships);

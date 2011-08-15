@@ -24,7 +24,7 @@ return row.first;
 
 int CSpreadSheetObject::save(TZip& archive, TContent& content) const
 {
-content.insert( filename(), ECT_SPREADSHEET );
+content.insert( filename(), ECT_WORKSHEET );
 std::stringstream sheet;
 sheet << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 sheet << "<worksheet ";
