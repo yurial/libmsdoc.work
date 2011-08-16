@@ -7,6 +7,7 @@ class CRelationShips;
 typedef CRelationShips TRelationShips;
 
 #include "czip.h"
+#include "ccontent.h"
 #include "crelationshipobject.h"
 #include "crelationship.h"
 

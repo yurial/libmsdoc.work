@@ -11,7 +11,7 @@ int CRelationShipObject::rid() const
 return m_rid;
 }
 
-ERELTYPE CRelationShipObject::type() const
+ECONTENTTYPE CRelationShipObject::type() const
 {
 return m_object->type();
 }

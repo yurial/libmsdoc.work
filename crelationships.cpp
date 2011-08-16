@@ -1,12 +1,6 @@
 #include <sstream>
 #include "crelationships.h"
 
-TString g_reltypes[] = {
-"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument",
-"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet",
-"http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings",
-};
-
 TRelationShip CRelationShips::insert(const IRelationObject* object)
 {
 return base::insert( base::end(), TRelationShipObject( object, base::size()+1 ) );
@@ -21,7 +15,7 @@ base::const_iterator it = base::begin();
 base::const_iterator end = base::end();
 for (;it != end; ++it)
     {
-    content << "<Relationship Id=\"rId" << it->rid() << "\" Type=\"" << g_reltypes[it->type()] << "\" Target=\"/" << it->filename() << "\"/>\n";
+    content << "<Relationship Id=\"rId" << it->rid() << "\" Type=\"" << g_contenttypes[it->type()].m_relationship << "\" Target=\"/" << it->filename() << "\"/>\n";
     }
 content << "</Relationships>";
 archive.add_file( filename, content.str() );

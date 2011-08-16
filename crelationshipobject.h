@@ -15,7 +15,7 @@ const IRelationObject*  m_object;
 public:
                 CRelationShipObject(const IRelationObject* object, int id);
 int             rid() const;
-ERELTYPE        type() const;
+ECONTENTTYPE    type() const;
 const TString   filename() const;
 
 CRelationShipObject& operator -- ();

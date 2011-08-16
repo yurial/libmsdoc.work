@@ -44,7 +44,7 @@ void            swap(TWorkBookList& l, TWorkBookList& r);
 int             save(TZip& archive, TContent& content) const;
 
 const TString   filename() const;
-ERELTYPE        type() const;
+ECONTENTTYPE    type() const;
 int             rid() const;
 };
 

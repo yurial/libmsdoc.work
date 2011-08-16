@@ -28,7 +28,7 @@ TRelationShips& m_relationships;
 TRelationShip   m_relationship;
 
 const TString   filename() const;
-ERELTYPE        type() const;
+ECONTENTTYPE    type() const;
 int             rid() const;
 
 public:

@@ -53,9 +53,9 @@ filename << m_dir << "/sheet" << m_relationship.rid() << ".xml";
 return filename.str();
 }
 
-ERELTYPE CSpreadSheetObject::type() const
+ECONTENTTYPE CSpreadSheetObject::type() const
 {
-return ERT_WORKSHEET;
+return ECT_WORKSHEET;
 }
 
 int CSpreadSheetObject::rid() const

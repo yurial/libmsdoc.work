@@ -62,9 +62,9 @@ const TString CWorkBook::filename() const
 return m_dir + "/workbook.xml";
 }
 
-ERELTYPE CWorkBook::type() const
+ECONTENTTYPE CWorkBook::type() const
 {
-return ERT_OFFICEDOCUMENT;
+return ECT_WORKBOOK;
 }
 
 int CWorkBook::rid() const

@@ -15,7 +15,7 @@ const TString CRelationShip::filename() const
 return (*this)->filename();
 }
 
-ERELTYPE CRelationShip::type() const
+ECONTENTTYPE CRelationShip::type() const
 {
 return (*this)->type();
 }

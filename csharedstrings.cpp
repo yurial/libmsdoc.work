@@ -46,9 +46,9 @@ const TString CSharedStrings::filename() const
 return m_dir + "/sharedStrings.xml";
 }
 
-ERELTYPE CSharedStrings::type() const
+ECONTENTTYPE CSharedStrings::type() const
 {
-return ERT_SHAREDSTRINGS;
+return ECT_SHARED_STRING_TABLE;
 }
 
 int CSharedStrings::rid() const

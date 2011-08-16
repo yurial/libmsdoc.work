@@ -19,7 +19,7 @@ public:
                 CRelationShip(const base& it);
 int             rid() const;
 const TString   filename() const;
-ERELTYPE        type() const;
+ECONTENTTYPE    type() const;
 };
 
 #endif
