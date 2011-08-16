@@ -9,11 +9,11 @@ typedef CRelationShip TRelationShip;
 #include "crelationshipobject.h"
 
 class CRelationShip:
-    public std::list<TRelationShipObject>::iterator
+    public std::list<SRelationShipObject>::iterator
 {
 protected:
-typedef std::list<TRelationShipObject> list;
-typedef std::list<TRelationShipObject>::iterator base;
+typedef std::list<SRelationShipObject> list;
+typedef std::list<SRelationShipObject>::iterator base;
 
 public:
                 CRelationShip(const base& it);

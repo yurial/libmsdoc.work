@@ -5,21 +5,19 @@ class CWorkBookListObject;
 typedef CWorkBookListObject TWorkBookListObject;
 
 #include "cstring.h"
-#include "iworkbooklist.h"
+#include "irelationshipobject.h"
 
 class CWorkBookListObject
 {
 protected:
-IWorkBookList*  m_object;
-TString         m_name;
+IRelationShipObject*    m_object;
+TString                 m_name;
 
 public:
-                CWorkBookListObject(IWorkBookList* object, const TString& name);
-
-const TString&  name() const;
-      TString&  name();
-
-      int       rid() const;
+                        CWorkBookListObject(IRelationShipObject* object, const TString& name);
+const TString&          name() const;
+      TString&          name();
+      int               rid() const;
 };
 
 #endif

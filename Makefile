@@ -5,7 +5,7 @@ BUILD = test
 all: $(BUILD)
 $(BUILD): depend $(BUILD:=.o) $(OBJ) Makefile
 
-OBJ = czip.o cdoc.o cdocxlsx.o crelationships.o crelationship.o crelationshipobject.o ccontent.o cworkbook.o cworkbooklist.o cworkbooklistobject.o ccell.o ccellobject.o ccellvalue.o crow.o crowobject.o cformula.o csharedstrings.o csharedstring.o csharedstringobject.o cspreadsheets.o cspreadsheet.o cspreadsheetobject.o
+OBJ = czip.o cdoc.o cdocxlsx.o crelationships.o crelationship.o crelationshipobject.o cbaserelationshipobject.o ccontent.o cworkbook.o cworkbooklist.o cworkbooklistobject.o ccell.o ccellobject.o ccellvalue.o crow.o crowobject.o cformula.o csharedstrings.o csharedstring.o csharedstringobject.o cspreadsheets.o cspreadsheet.o cspreadsheetobject.o
 
 include $(wildcard *.d)
 

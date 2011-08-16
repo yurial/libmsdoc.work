@@ -11,7 +11,14 @@ typedef CSpreadSheets TSpreadSheets;
 #include "ccontent.h"
 #include "crelationships.h"
 
+class ITSpreadSheetsFromTWorkBook
+{
+public:
+virtual int save(TZip& archive, TContent& content) const = 0;
+};
+
 class CSpreadSheets:
+    public ITSpreadSheetsFromTWorkBook,
     protected std::list<TSpreadSheetObject>
 {
 private:
@@ -24,14 +31,15 @@ typedef std::list<TSpreadSheetObject> base;
 TString         m_dir;
 TRelationShips& m_relationships;
 
+/*ITSpreadSheetsFromTWorkBook*/
+int             save(TZip& archive, TContent& content) const;
+
 public:
                 CSpreadSheets(const TString& dir, TRelationShips& relationships);
                 ~CSpreadSheets();
-int             save(TZip& archive, TContent& content) const;
 
 TSpreadSheet    insert();
 void            erase(TSpreadSheet& spreadsheet);
-using           base::size;
 };
 
 #endif

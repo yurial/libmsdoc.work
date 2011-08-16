@@ -25,8 +25,6 @@ public:
 
 TCell   operator [] (int index);
 TCell   operator [] (const TString& name);
-
-int     save(std::stringstream& sheet) const;
 };
 
 #endif

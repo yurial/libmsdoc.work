@@ -8,11 +8,18 @@ typedef CSharedStrings TSharedStrings;
 
 #include "czip.h"
 #include "ccontent.h"
-#include "crelationships.h"
+#include "cbaserelationshipobject.h"
 #include "csharedstring.h"
 
+class ITSharedStringsFromTWorkBook
+{
+public:
+virtual int save(TZip& archive, TContent& content) const = 0;
+};
+
 class CSharedStrings:
-    public IRelationObject,
+    public ITSharedStringsFromTWorkBook,
+    public TBaseRelationShipObject,
     protected std::map<TSharedStringObject,int>
 {
 private:
@@ -24,20 +31,18 @@ protected:
 typedef std::map<TSharedStringObject,int> base;
 
 TString         m_dir;
-TRelationShips& m_relationships;
-TRelationShip   m_relationship;
 
+/*TBaseRelationShipObject*/
 const TString   filename() const;
 ECONTENTTYPE    type() const;
-int             rid() const;
+/*ITSharedStringsFromTWorkBook*/
+int             save(TZip& archive, TContent& content) const;
 
 public:
                 CSharedStrings(const TString& dir, TRelationShips& relationships);
-int             save(TZip& archive, TContent& content) const;
 
 TSharedString   insert(const TString& string);
 void            erase(TSharedString& sharedstring);
-using           base::size;
 };
 
 #endif

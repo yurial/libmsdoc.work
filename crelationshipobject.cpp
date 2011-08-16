@@ -1,29 +1,23 @@
 #include "crelationshipobject.h"
 
-CRelationShipObject::CRelationShipObject(const IRelationObject* object, int rid)
+SRelationShipObject::SRelationShipObject(const IRelationShipObject* object, int rid)
 {
 m_object = object;
 m_rid = rid;
 }
 
-int CRelationShipObject::rid() const
+int SRelationShipObject::rid() const
 {
 return m_rid;
 }
 
-ECONTENTTYPE CRelationShipObject::type() const
+ECONTENTTYPE SRelationShipObject::type() const
 {
 return m_object->type();
 }
 
-const TString CRelationShipObject::filename() const
+const TString SRelationShipObject::filename() const
 {
 return m_object->filename();
-}
-
-CRelationShipObject& CRelationShipObject::operator -- ()
-{
---m_rid;
-return *this;
 }
 

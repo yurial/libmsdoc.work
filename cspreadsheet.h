@@ -27,7 +27,7 @@ public:
 
 TRow            operator [] (int index);
 
-                operator IWorkBookList& ();
+                operator IRelationShipObject& ();
 };
 
 #endif

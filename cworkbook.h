@@ -5,16 +5,22 @@ class CWorkBook;
 typedef CWorkBook TWorkBook;
 
 #include "czip.h"
-#include "irelationobject.h"
+#include "cbaserelationshipobject.h"
 #include "cworkbooklist.h"
 #include "cworkbooklistobject.h"
 #include "cspreadsheets.h"
 #include "csharedstrings.h"
 #include "ccontent.h"
-#include "crelationships.h"
+
+class ITWorkBookFromTDocXLSX
+{
+public:
+virtual int save(TZip& archive, TContent& content) const = 0;
+};
 
 class CWorkBook:
-    public IRelationObject,
+    public ITWorkBookFromTDocXLSX,
+    public TBaseRelationShipObject,
     public std::list<TWorkBookListObject>
 {
 private:
@@ -25,8 +31,12 @@ protected:
 typedef std::list<TWorkBookListObject> base;
 
 TString         m_dir;
-TRelationShip   m_relationship;
-TRelationShips  m_relationships;
+
+/*TBaseRelationShipObject*/
+const TString   filename() const;
+ECONTENTTYPE    type() const;
+/*ITWorkBookFromTDocXLSX*/
+int             save(TZip& archive, TContent& content) const;
 
 public:
 TSpreadSheets   m_spreadsheets;
@@ -35,17 +45,9 @@ TSharedStrings  m_sharedstrings;
 
 public:
                 CWorkBook(const TString& dir, TRelationShips& relationships);
-TWorkBookList   begin();
-TWorkBookList   end();
-TWorkBookList   insert(IWorkBookList& list, const TString& name);
+TWorkBookList   insert(IRelationShipObject& list, const TString& name);
 void            erase(TWorkBookList& list);
 void            swap(TWorkBookList& l, TWorkBookList& r);
-
-int             save(TZip& archive, TContent& content) const;
-
-const TString   filename() const;
-ECONTENTTYPE    type() const;
-int             rid() const;
 };
 
 #endif

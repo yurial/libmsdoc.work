@@ -22,13 +22,13 @@ protected:
 TRowObject&     m_row;
 int             m_id;
 
-public:
-                CCellObject(TRowObject& row, int id);
-                ~CCellObject();
-
 int             id() const;
 TString         col() const;
 TString         cell() const;
+
+public:
+                CCellObject(TRowObject& row, int id);
+                ~CCellObject();
 
 using TCellValue::operator =;
 

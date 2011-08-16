@@ -1,10 +1,10 @@
-#ifndef IRELATIONOBJECTH
-#define IRELATIONOBJECTH
+#ifndef IRELATIONSHIPOBJECTH
+#define IRELATIONSHIPOBJECTH
 
 #include "cstring.h"
 #include "ccontent.h"
 
-class IRelationObject
+class IRelationShipObject
 {
 public:
 virtual const TString   filename() const = 0;

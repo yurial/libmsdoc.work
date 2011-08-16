@@ -6,7 +6,6 @@
 class CWorkBookList;
 typedef CWorkBookList TWorkBookList;
 
-#include "iworkbooklist.h"
 #include "cworkbooklistobject.h"
 
 class CWorkBookList:

@@ -10,7 +10,7 @@ TRow CSpreadSheet::operator [] (int index)
 return (*this)->operator [] ( index );
 }
 
-CSpreadSheet::operator IWorkBookList& ()
+CSpreadSheet::operator IRelationShipObject& ()
 {
 return this->operator *();
 }

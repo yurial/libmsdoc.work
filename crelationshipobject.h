@@ -1,24 +1,19 @@
-#ifndef CRELATIONSHIPOBJECTH
-#define CRELATIONSHIPOBJECTH
+#ifndef SRELATIONSHIPOBJECTH
+#define SRELATIONSHIPOBJECTH
 
-class CRelationShipObject;
-typedef CRelationShipObject TRelationShipObject;
+#include "irelationshipobject.h"
 
-#include "irelationobject.h"
-
-class CRelationShipObject
+class SRelationShipObject
 {
-protected:
-int                     m_rid;
-const IRelationObject*  m_object;
+public:
+int                         m_rid;
+const IRelationShipObject*  m_object;
 
 public:
-                CRelationShipObject(const IRelationObject* object, int id);
+                SRelationShipObject(const IRelationShipObject* object, int rid);
 int             rid() const;
 ECONTENTTYPE    type() const;
 const TString   filename() const;
-
-CRelationShipObject& operator -- ();
 };
 
 #endif

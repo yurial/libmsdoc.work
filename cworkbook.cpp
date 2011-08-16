@@ -2,21 +2,11 @@
 #include "cworkbook.h"
 
 CWorkBook::CWorkBook(const TString& dir, TRelationShips& relationships):
-    m_dir( dir ), m_relationship( relationships.insert( this ) ), m_spreadsheets( m_dir + "/worksheets", m_relationships ), m_sharedstrings( dir, m_relationships )
+    TBaseRelationShipObject( relationships ), m_dir( dir ), m_spreadsheets( m_dir + "/worksheets", m_relationships ), m_sharedstrings( dir, m_relationships )
 {
 }
 
-TWorkBookList CWorkBook::begin()
-{
-return base::begin();
-}
-
-TWorkBookList CWorkBook::end()
-{
-return base::end();
-}
-
-TWorkBookList CWorkBook::insert(IWorkBookList& list, const TString& name)
+TWorkBookList CWorkBook::insert(IRelationShipObject& list, const TString& name)
 {
 return base::insert( base::end(), TWorkBookListObject( &list, name ) );
 }
@@ -28,9 +18,9 @@ TString reldir = m_dir + "/_rels";
 TString relfile = reldir + "/workbook.xml.rels";
 archive.add_dir( m_dir );
 archive.add_dir( reldir );
-int ret = m_spreadsheets.save( archive, content );
+int ret = ((const ITSpreadSheetsFromTWorkBook&)m_spreadsheets).save( archive, content );
 //TODO: ret
-ret = m_sharedstrings.save( archive, content );
+ret = ((const ITSharedStringsFromTWorkBook&)m_sharedstrings).save( archive, content );
 //TODO: ret
 ret = m_relationships.save( archive, relfile );
 //TODO ret
@@ -65,10 +55,5 @@ return m_dir + "/workbook.xml";
 ECONTENTTYPE CWorkBook::type() const
 {
 return ECT_WORKBOOK;
-}
-
-int CWorkBook::rid() const
-{
-return m_relationship.rid();
 }
 

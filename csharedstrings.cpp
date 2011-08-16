@@ -2,7 +2,7 @@
 #include "csharedstrings.h"
 
 CSharedStrings::CSharedStrings(const TString& dir, TRelationShips& relationships):
-    m_dir( dir ), m_relationships( relationships ), m_relationship( relationships.insert( this ) )
+    TBaseRelationShipObject( relationships ), m_dir( dir )
 {
 }
 
@@ -49,10 +49,5 @@ return m_dir + "/sharedStrings.xml";
 ECONTENTTYPE CSharedStrings::type() const
 {
 return ECT_SHARED_STRING_TABLE;
-}
-
-int CSharedStrings::rid() const
-{
-return m_relationship.rid();
 }
 

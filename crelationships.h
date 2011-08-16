@@ -12,13 +12,13 @@ typedef CRelationShips TRelationShips;
 #include "crelationship.h"
 
 class CRelationShips:
-    protected std::list<TRelationShipObject>
+    protected std::list<SRelationShipObject>
 {
 protected:
-typedef std::list<TRelationShipObject> base;
+typedef std::list<SRelationShipObject> base;
 
 public:
-TRelationShip   insert(const IRelationObject* object);
+TRelationShip   insert(const IRelationShipObject* object);
 int             save(TZip& archive, const TString& filename) const;
 void            erase(TRelationShip& relationship);
 };

@@ -2,18 +2,17 @@
 #include "cspreadsheetobject.h"
 
 CSpreadSheetObject::CSpreadSheetObject(const TString& dir, TRelationShips& relationships):
-    m_relationships( relationships ), m_relationship( relationships.insert( this ) ), m_dir( dir )
+    TBaseRelationShipObject( relationships ), m_dir( dir )
 {
 }
 
 CSpreadSheetObject::CSpreadSheetObject(const CSpreadSheetObject& origin):
-    m_relationships( origin.m_relationships ), m_relationship( m_relationships.insert( this ) ), m_dir( origin.m_dir )   
+    TBaseRelationShipObject( origin ), m_dir( origin.m_dir )   
 {
 }
 
 CSpreadSheetObject::~CSpreadSheetObject()
 {
-m_relationships.erase( m_relationship );
 }
 
 TRow CSpreadSheetObject::operator [] (int index)
@@ -56,10 +55,5 @@ return filename.str();
 ECONTENTTYPE CSpreadSheetObject::type() const
 {
 return ECT_WORKSHEET;
-}
-
-int CSpreadSheetObject::rid() const
-{
-return m_relationship.rid();
 }
 

@@ -1,6 +1,6 @@
 #include "cworkbooklistobject.h"
 
-CWorkBookListObject::CWorkBookListObject(IWorkBookList* object, const TString& name):
+CWorkBookListObject::CWorkBookListObject(IRelationShipObject* object, const TString& name):
     m_object( object ), m_name( name )
 {
 }

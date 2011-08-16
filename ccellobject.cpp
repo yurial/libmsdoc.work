@@ -95,7 +95,7 @@ switch ( TCellValue::m_type )
         break;
     case ECV_SHAREDSTRING:
         {
-        row << "<c r=\"" << cell() << "\" t=\"s\"><v>" << ((const TSharedString*)TCellValue::m_value)->id() << "</v></c>";
+        row << "<c r=\"" << cell() << "\" t=\"s\"><v>" << ((const ITSharedStringFromTCellObject*)TCellValue::m_value)->id() << "</v></c>";
         }
         break;
     case ECV_FORMULA:

@@ -14,7 +14,7 @@ TZip archive;
 int ret = archive.create( filename );
 //TODO: ret
 TContent content;
-ret = m_workbook.save( archive, content );
+ret = ((const ITWorkBookFromTDocXLSX&)m_workbook).save( archive, content );
 //TODO: ret
 ret = content.save( archive );
 //TODO: ret

@@ -1,9 +1,9 @@
 #include <sstream>
 #include "crelationships.h"
 
-TRelationShip CRelationShips::insert(const IRelationObject* object)
+TRelationShip CRelationShips::insert(const IRelationShipObject* object)
 {
-return base::insert( base::end(), TRelationShipObject( object, base::size()+1 ) );
+return base::insert( base::end(), SRelationShipObject( object, base::size()+1 ) );
 }
 
 int CRelationShips::save(TZip& archive, const TString& filename) const
@@ -28,7 +28,7 @@ base::iterator it = relationship;
 base::iterator end = base::end();
 while (++it != end)
     {
-    --(*it);
+    --(it->m_rid);
     }
 base::erase( relationship );
 }
