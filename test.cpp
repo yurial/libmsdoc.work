@@ -34,6 +34,8 @@ sheet1[ 0 ][ "B" ] = 1.5;
 sheet1[ 1 ][ "A" ] = "qwe";
 /* set formula */
 sheet1[ 0 ][ "C" ] = frm;
+/* set date */
+sheet1[ 1 ][ "B" ] = TDate( time(NULL) );
 
 //TSpreadSheet sheet2 = book.m_spreadsheets.insert( "sheet2" );
 

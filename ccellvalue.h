@@ -4,9 +4,11 @@
 class CCellValue;
 typedef CCellValue TCellValue;
 
+#include "ccelltype.h"
 #include "cstring.h"
 #include "cformula.h"
 #include "csharedstring.h"
+#include "cdate.h"
 
 enum ECV_TYPE
 {
@@ -16,9 +18,11 @@ ECV_SHAREDSTRING,
 ECV_FORMULA,
 ECV_INT,
 ECV_DOUBLE,
+ECV_DATE,
 };
 
-class CCellValue
+class CCellValue:
+    public TCellType
 {
 private:
 protected:
@@ -36,6 +40,7 @@ CCellValue& operator = (const TSharedString& sharedstring);
 CCellValue& operator = (const TFormula& formula);
 CCellValue& operator = (const int value);
 CCellValue& operator = (const double value);
+CCellValue& operator = (const TDate& date);
 };
 
 #endif

@@ -13,6 +13,18 @@ typedef std::map<int,TCellObject> TCells;
 TString ToStrId(int id);
 int     FromStrId(const TString& col);
 
+/*
+TODO:
+    Attributes:
+        cm
+        ph
+        s
+        t
+        vm
+    Child:
+        extLst
+*/
+
 class CCellObject:
     protected TCellValue
 {

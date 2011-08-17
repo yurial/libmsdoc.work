@@ -86,36 +86,47 @@ return str.str();
 
 int CCellObject::save(std::stringstream& row) const
 {
+if ( ECV_NONE == TCellValue::m_type )
+    {
+    return 0;
+    }
+
+row << "<c r=\"" << cell() << "\"" << t() << ">";
 switch ( TCellValue::m_type )
     {
     case ECV_STRING:
         {
-        row << "<c r=\"" << cell() << "\" t=\"inlineStr\"><is><t>" << *(const TString*)TCellValue::m_value << "</t></is></c>";
+        row << "<is><t>" << *(const TString*)TCellValue::m_value << "</t></is>";
         }
         break;
     case ECV_SHAREDSTRING:
         {
-        row << "<c r=\"" << cell() << "\" t=\"s\"><v>" << ((const ITSharedStringFromTCellObject*)TCellValue::m_value)->id() << "</v></c>";
+        row << "<v>" << ((const ITSharedStringFromTCellObject*)TCellValue::m_value)->id() << "</v>";
         }
         break;
     case ECV_FORMULA:
         {
-        row << "<c r=\"" << cell() << "\"><f>" << ((const TFormula*)TCellValue::m_value)->c_str() << "</f></c>";
+        row << "<f>" << ((const TFormula*)TCellValue::m_value)->c_str() << "</f>";
         }
         break;
     case ECV_INT:
         {
-        row << "<c r=\"" << cell() << "\"><v>" << *(const int*)TCellValue::m_value << "</v></c>";
+        row << "<v>" << *(const int*)TCellValue::m_value << "</v>";
         }
         break;
     case ECV_DOUBLE:
         {
-        row << "<c r=\"" << cell() << "\"><v>" << *(const double*)TCellValue::m_value << "</v></c>";
+        row << "<v>" << *(const double*)TCellValue::m_value << "</v>";
         }
         break;
+    case ECV_DATE:
+        {
+        row << "<v>" << ((const TDate*)TCellValue::m_value)->c_str() << "</v>";
+        }
     case ECV_NONE:
         break;
     }
+row << "</c>";
 return 0;
 }
 

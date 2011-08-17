@@ -7,6 +7,7 @@ typedef CCell TCell;
 #include "csharedstring.h"
 #include "ccellobject.h"
 #include "cformula.h"
+#include "cdate.h"
 
 class CCell:
     public TCells::iterator
@@ -23,6 +24,7 @@ public:
 CCell&  operator = (const TString& string);
 CCell&  operator = (const TSharedString& sharedstring);
 CCell&  operator = (const TFormula& formula);
+CCell&  operator = (const TDate& date);
 CCell&  operator = (const int value);
 CCell&  operator = (const double value);
 };

@@ -23,6 +23,12 @@ CCell& CCell::operator = (const TFormula& formula)
 return *this;
 }
 
+CCell& CCell::operator = (const TDate& date)
+{
+(*this)->second.operator = ( date );
+return *this;
+}
+
 CCell& CCell::operator = (const int value)
 {
 (*this)->second.operator = ( value );
