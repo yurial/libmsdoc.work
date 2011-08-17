@@ -1,0 +1,6 @@
+*.o
+*.d
+*.so
+test
+test.zip
+
