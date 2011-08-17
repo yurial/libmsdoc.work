@@ -9,7 +9,7 @@ int main()
 /* create document */
 TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
-TFontStyle font = book.m_stylesheet.m_fonts.insert( "Times New Roman", 10, EFF_BOLD | EFF_ITALIC );
+TFont font = book.m_stylesheet.m_fonts.insert( "Times New Roman", 10, EFF_BOLD | EFF_ITALIC );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 

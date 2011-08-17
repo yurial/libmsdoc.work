@@ -5,7 +5,7 @@ class CStyleSheet;
 typedef CStyleSheet TStyleSheet;
 
 #include "cbaserelationshipobject.h"
-#include "cfontstyles.h"
+#include "cfonts.h"
 
 class ITStyleSheetFromTWorkBook
 {
@@ -18,17 +18,17 @@ class CStyleSheet:
     public TBaseRelationShipObject
 {
 protected:
-TString             m_dir;
+TString         m_dir;
 
-const TString       filename() const;
-ECONTENTTYPE        type() const;
+const TString   filename() const;
+ECONTENTTYPE    type() const;
 
-virtual int save(TZip& archive, TContent& content) const;
+int             save(TZip& archive, TContent& content) const;
 
 public:
-                    CStyleSheet(const TString& dir, TRelationShips& relationships);
+                CStyleSheet(const TString& dir, TRelationShips& relationships);
 
-TFontStyles         m_fonts;
+TFonts          m_fonts;
 //TBorderStyles   //borders
 //TFillStyles     //fills
 //TNumFormat      //numFmts

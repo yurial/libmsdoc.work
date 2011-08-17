@@ -1,13 +1,13 @@
-#ifndef CFONTSTYLEOBJECTH
-#define CFONTSTYLEOBJECTH
+#ifndef CFONTOBJECTH
+#define CFONTOBJECTH
 
-class CFontStyleObject;
-typedef CFontStyleObject TFontStyleObject;
+class CFontObject;
+typedef CFontObject TFontObject;
 
 #include "cstring.h"
 #include "cfontflags.h"
 
-class CFontStyleObject
+class CFontObject
 {
 protected:
 TString     m_name;     //name (Font Name) 18.8.29
@@ -20,7 +20,7 @@ TFontFlags  m_flags;
 //TODO: TVertalign      /vertAlign (Vertical Alignment) 18.4.14
 
 public:
-    CFontStyleObject(TString name, int size, TFontFlags flags);
+    CFontObject(TString name, int size, TFontFlags flags);
 };
 
 #endif
