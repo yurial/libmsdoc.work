@@ -2,7 +2,11 @@
 #include "cworkbook.h"
 
 CWorkBook::CWorkBook(const TString& dir, TRelationShips& relationships):
-    TBaseRelationShipObject( relationships ), m_dir( dir ), m_spreadsheets( m_dir + "/worksheets", m_relationships ), m_sharedstrings( dir, m_relationships )
+    TBaseRelationShipObject( relationships ),
+    m_dir( dir ),
+    m_spreadsheets( m_dir + "/worksheets", m_relationships ),
+    m_sharedstrings( dir, m_relationships ),
+    m_stylesheet( dir, m_relationships )
 {
 }
 
@@ -21,6 +25,8 @@ archive.add_dir( reldir );
 int ret = ((const ITSpreadSheetsFromTWorkBook&)m_spreadsheets).save( archive, content );
 //TODO: ret
 ret = ((const ITSharedStringsFromTWorkBook&)m_sharedstrings).save( archive, content );
+//TODO: ret
+ret = ((const ITStyleSheetFromTWorkBook&)m_stylesheet).save( archive, content );
 //TODO: ret
 ret = m_relationships.save( archive, relfile );
 //TODO ret

@@ -10,6 +10,7 @@ typedef CWorkBook TWorkBook;
 #include "cworkbooklistobject.h"
 #include "cspreadsheets.h"
 #include "csharedstrings.h"
+#include "cstylesheet.h"
 #include "ccontent.h"
 
 class ITWorkBookFromTDocXLSX
@@ -41,7 +42,7 @@ int             save(TZip& archive, TContent& content) const;
 public:
 TSpreadSheets   m_spreadsheets;
 TSharedStrings  m_sharedstrings;
-//TStyleSheet     m_stylesheet;
+TStyleSheet     m_stylesheet;
 
 public:
                 CWorkBook(const TString& dir, TRelationShips& relationships);

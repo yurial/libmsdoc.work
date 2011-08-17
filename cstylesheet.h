@@ -4,25 +4,31 @@
 class CStyleSheet;
 typedef CStyleSheet TStyleSheet;
 
-#include "crelationsheeps.h"
+#include "cbaserelationshipobject.h"
+#include "cfontstyles.h"
+
+class ITStyleSheetFromTWorkBook
+{
+public:
+virtual int save(TZip& archive, TContent& content) const = 0;
+};
 
 class CStyleSheet:
-    public IRelationObject
+    public ITStyleSheetFromTWorkBook,
+    public TBaseRelationShipObject
 {
 protected:
 TString             m_dir;
-TRelationSheeps&    m_relationsheeps;
-TRelationSheep      m_relationsheep;
 
 const TString       filename() const;
-ERELTYPE            type() const;
-int                 rid() const;
+ECONTENTTYPE        type() const;
+
+virtual int save(TZip& archive, TContent& content) const;
 
 public:
                     CStyleSheet(const TString& dir, TRelationShips& relationships);
-int                 save(TZip& archive, TContent& content) const;
 
-//TFontStyles     //fonts
+TFontStyles         m_fonts;
 //TBorderStyles   //borders
 //TFillStyles     //fills
 //TNumFormat      //numFmts

@@ -9,8 +9,7 @@ int main()
 /* create document */
 TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
-book.begin();
-book.end();
+TFontStyle font = book.m_stylesheet.m_fonts.insert( "Times New Roman", 10, EFF_BOLD | EFF_ITALIC );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
@@ -35,7 +34,7 @@ sheet1[ 1 ][ "A" ] = "qwe";
 /* set formula */
 sheet1[ 0 ][ "C" ] = frm;
 /* set date */
-sheet1[ 1 ][ "B" ] = TDate( time(NULL) );
+//sheet1[ 1 ][ "B" ] = TDate( time(NULL) );
 
 //TSpreadSheet sheet2 = book.m_spreadsheets.insert( "sheet2" );
 
