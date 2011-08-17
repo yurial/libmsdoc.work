@@ -1,11 +1,10 @@
 #ifndef CSHAREDSTRINGH
 #define CSHAREDSTRINGH
 
-#include <map>
-
 class CSharedString;
 typedef CSharedString TSharedString;
 
+#include "csharedstrings.h"
 #include "csharedstringobject.h"
 
 class ITSharedStringFromTCellObject
@@ -16,21 +15,25 @@ virtual int id() const = 0;
 
 class CSharedString:
     public ITSharedStringFromTCellObject,
-    public std::map<TSharedStringObject,int>::iterator
+    public TSharedStringsContainer::iterator
 {
 private:
 /* you can't do that */
 CSharedString&  operator = (const CSharedString&);
 
 protected:
-typedef std::map<TSharedStringObject,int>::iterator base;
-using   base::operator ->;
+typedef TSharedStringsContainer::iterator base;
+using   base::operator *;
+
+ITSharedStringsFromTSharedString&   m_sharedstrings;
 
 /*ITSharedStringFromTCellObject*/
 int             id() const;
 
 public:
-                CSharedString(const base& it);
+                CSharedString(ITSharedStringsFromTSharedString& sharedstrings, const base& it);
+                CSharedString(const CSharedString& origin);
+                ~CSharedString();
 };
 
 #endif

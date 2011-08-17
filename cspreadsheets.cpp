@@ -3,7 +3,8 @@
 #include "cspreadsheets.h"
 
 CSpreadSheets::CSpreadSheets(const TString& dir, TRelationShips& relationships):
-    m_dir( dir ), m_relationships( relationships ){
+    m_dir( dir ), m_relationships( relationships )
+{
 }
 
 CSpreadSheets::~CSpreadSheets()
@@ -26,10 +27,5 @@ return 0;
 TSpreadSheet CSpreadSheets::insert()
 {
 return base::insert( end(), TSpreadSheetObject( m_dir, m_relationships ) );
-}
-
-void CSpreadSheets::erase(TSpreadSheet& spreadsheet)
-{
-base::erase( spreadsheet );
 }
 

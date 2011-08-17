@@ -1,21 +1,25 @@
 #ifndef CFONTH
 #define CFONTH
 
-#include <list>
-
 class CFont;
 typedef CFont TFont;
 
+#include "cfonts.h"
 #include "cfontobject.h"
 
 class CFont:
-    protected std::list<TFontObject>::iterator
+    protected TFontsContainer::iterator
 {
 protected:
-typedef std::list<TFontObject>::iterator base;
+typedef TFontsContainer::iterator base;
+using base::operator ->;
+
+ITFontsFromTFont& m_fonts;
 
 public:
-            CFont(const base& it);
+    CFont(ITFontsFromTFont& fonts, const base& it);
+    CFont(const CFont& origin);
+    ~CFont();
 };
 
 #endif

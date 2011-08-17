@@ -17,15 +17,28 @@ EFF_UNDERLINE   = 0x80, // $18.4.13
 class CFontFlags;
 typedef CFontFlags TFontFlags;
 
-class CFontFlags
+#include "cstring.h"
+
+class ITFontFlagsFromTFontObject
+{
+public:
+virtual TString save() const = 0;
+};
+
+class CFontFlags:
+    public ITFontFlagsFromTFontObject
 {
 protected:
 int         m_flags;
+
+TString     save() const;
 
 public:
             CFontFlags();
             CFontFlags(int flags);
             CFontFlags(EFONTFLAG flag);
+
+bool        operator <  (const CFontFlags& rvalue) const;
 
 CFontFlags& operator =  (const CFontFlags& rvalue);
 CFontFlags& operator =  (int flags);

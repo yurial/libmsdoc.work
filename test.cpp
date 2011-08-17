@@ -14,7 +14,9 @@ TFont font = book.m_stylesheet.m_fonts.insert( "Times New Roman", 10, EFF_BOLD |
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
 /* add new shared string */
-TSharedString str = book.m_sharedstrings.insert( "text" );
+TSharedString str1 = book.m_sharedstrings.insert( "text1" );
+book.m_sharedstrings.insert( "text3" );
+TSharedString str2 = book.m_sharedstrings.insert( "text2" );
 /* add new shared formula */
 TFormula frm( "=A1+B1" );
 
@@ -23,8 +25,8 @@ TRow row0 = sheet1[ 0 ];
 /* get cell */
 TCell cell01 = row0[ 3 ];
 /* set shared string */
-cell01 = str;
-row0[ "E" ] = str;
+cell01 = str1;
+row0[ "E" ] = str2;
 /* set int */
 sheet1[ 0 ][ "A" ] = 1;
 /* set double */

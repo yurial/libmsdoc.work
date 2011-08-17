@@ -7,7 +7,40 @@ typedef CFontObject TFontObject;
 #include "cstring.h"
 #include "cfontflags.h"
 
-class CFontObject
+class ITFontObjectFromTFonts
+{
+protected:
+int     m_id;
+
+public:
+        ITFontObjectFromTFonts();
+        ITFontObjectFromTFonts(const ITFontObjectFromTFonts& origin);
+
+void    SetId(int id);
+int     GetId() const;
+void    operator -- ();
+
+virtual TString save() const = 0;
+};
+
+class ITFontObjectFromTFont
+{
+protected:
+mutable int m_links;
+
+public:
+            ITFontObjectFromTFont();
+            ITFontObjectFromTFont(const ITFontObjectFromTFont& origin);
+
+void        Link() const;
+int         UnLink() const;
+
+virtual int id() const = 0;
+};
+
+class CFontObject:
+    public ITFontObjectFromTFonts,
+    public ITFontObjectFromTFont
 {
 protected:
 TString     m_name;     //name (Font Name) 18.8.29
@@ -19,8 +52,17 @@ TFontFlags  m_flags;
 //TODO: TFontScheme     //scheme (Scheme) 18.8.35
 //TODO: TVertalign      /vertAlign (Vertical Alignment) 18.4.14
 
+/* ITFontObjectFromTFonts */
+TString save() const;
+
+/* ITFontObjectFromTFont */
+int id() const;
+
 public:
-    CFontObject(TString name, int size, TFontFlags flags);
+        CFontObject(TString name, int size, TFontFlags flags);
+        CFontObject(const CFontObject& origin);
+
+bool    operator <  (const CFontObject& rvalue) const;
 };
 
 #endif

@@ -22,6 +22,7 @@ content.insert( filename(), type() );
 std::stringstream stylesheet;
 stylesheet << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 stylesheet << "<stylesheet xmlns=\"" << g_contenttypes[ type() ].m_namespace << "\">\n";
+stylesheet << ((const ITFontsFromTStyleSheet&)m_fonts).save();
 stylesheet << "</stylesheet>";
 archive.add_file( filename(), stylesheet.str() );
 return 0;

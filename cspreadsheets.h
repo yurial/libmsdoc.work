@@ -39,7 +39,6 @@ public:
                 ~CSpreadSheets();
 
 TSpreadSheet    insert();
-void            erase(TSpreadSheet& spreadsheet);
 };
 
 #endif

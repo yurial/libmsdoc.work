@@ -8,7 +8,7 @@ CSharedStrings::CSharedStrings(const TString& dir, TRelationShips& relationships
 
 int CSharedStrings::save(TZip& archive, TContent& content) const
 {
-content.insert( filename(), ECT_SHARED_STRING_TABLE );
+content.insert( filename(), type() );
 std::stringstream sharedstrings;
 sharedstrings << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 sharedstrings << "<sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">\n";
@@ -17,7 +17,7 @@ base::const_iterator it = base::begin();
 base::const_iterator end = base::end();
 for (; it != end; ++it)
     {
-    sharedstrings << "<si><t>" << it->first << "</t></si>\n";
+    sharedstrings << "<si><t>" << ((const ITSharedStringObjectFromTSharedStrings&)*it).save() << "</t></si>\n";
     }
 sharedstrings << "</sst>";
 archive.add_file( filename(), sharedstrings.str() );
@@ -26,19 +26,24 @@ return 0;
 
 TSharedString CSharedStrings::insert(const TString& string)
 {
-std::pair<base::iterator,bool> result = base::insert( std::make_pair( TSharedStringObject( string ), size() ) );
-return result.first;
+std::pair<base::iterator,bool> result = base::insert( TSharedStringObject( string ) );
+base::iterator it = result.first;
+if ( result.second )
+    {
+    ((ITSharedStringObjectFromTSharedStrings&)*it).SetId( distance( base::begin(), it ) );
+    }
+return TSharedString( *this, it );
 }
 
-void CSharedStrings::erase(TSharedString& sharedstring)
+void CSharedStrings::erase(base::iterator& it)
 {
-base::iterator it = sharedstring;
+base::iterator pos = it;
 base::iterator end = base::end();
-while ( ++it != end )
+while ( ++pos != end )
     {
-    --(it->second);
+    --((ITSharedStringObjectFromTSharedStrings&)*pos);
     }
-base::erase( sharedstring );
+base::erase( it );
 }
 
 const TString CSharedStrings::filename() const

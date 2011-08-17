@@ -1,19 +1,38 @@
 #ifndef CFONTSH
 #define CFONTSH
 
-#include <list>
+#include <set>
 
 class CFonts;
 typedef CFonts TFonts;
 
-#include "cfont.h"
 #include "cfontobject.h"
+typedef std::set<TFontObject> TFontsContainer;
+
+class ITFontsFromTStyleSheet
+{
+public:
+virtual TString save() const = 0;
+};
+
+class ITFontsFromTFont
+{
+public:
+virtual void erase(TFontsContainer::iterator it) = 0;
+};
+
+#include "cfont.h"
 
 class CFonts:
-    protected std::list<TFontObject>
+    public ITFontsFromTStyleSheet,
+    public ITFontsFromTFont,
+    protected TFontsContainer
 {
 protected:
-typedef std::list<TFontObject> base;
+typedef TFontsContainer base;
+
+TString save() const;
+void    erase(base::iterator it);
 
 public:
 TFont   insert(TString name, int size, TFontFlags flags);
