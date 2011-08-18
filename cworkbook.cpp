@@ -4,9 +4,9 @@
 CWorkBook::CWorkBook(const TString& dir, TRelationShips& relationships):
     TBaseRelationShipObject( relationships ),
     m_dir( dir ),
-    m_spreadsheets( m_dir + "/worksheets", m_relationships ),
+    m_stylesheet( dir, m_relationships ),
     m_sharedstrings( dir, m_relationships ),
-    m_stylesheet( dir, m_relationships )
+    m_spreadsheets( m_dir + "/worksheets", m_relationships )
 {
 }
 

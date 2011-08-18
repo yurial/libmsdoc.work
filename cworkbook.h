@@ -40,9 +40,9 @@ ECONTENTTYPE    type() const;
 int             save(TZip& archive, TContent& content) const;
 
 public:
-TSpreadSheets   m_spreadsheets;
-TSharedStrings  m_sharedstrings;
 TStyleSheet     m_stylesheet;
+TSharedStrings  m_sharedstrings;
+TSpreadSheets   m_spreadsheets;
 
 public:
                 CWorkBook(const TString& dir, TRelationShips& relationships);
