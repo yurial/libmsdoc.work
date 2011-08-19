@@ -8,6 +8,7 @@ typedef CCell TCell;
 #include "ccellobject.h"
 #include "cformula.h"
 #include "cdate.h"
+#include "ccellxf.h"
 
 class CCell:
     public TCells::iterator
@@ -27,6 +28,8 @@ CCell&  operator = (const TFormula& formula);
 CCell&  operator = (const TDate& date);
 CCell&  operator = (const int value);
 CCell&  operator = (const double value);
+
+CCell&  operator = (const TCellXF& cellxf);
 };
 
 #endif

@@ -21,9 +21,12 @@ int CStyleSheet::save(TZip& archive, TContent& content) const
 content.insert( filename(), type() );
 std::stringstream stylesheet;
 stylesheet << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
-stylesheet << "<stylesheet xmlns=\"" << g_contenttypes[ type() ].m_namespace << "\">\n";
+stylesheet << "<styleSheet xmlns=\"" << g_contenttypes[ type() ].m_namespace << "\">\n";
 stylesheet << ((const ITFontsFromTStyleSheet&)m_fonts).save();
-stylesheet << "</stylesheet>";
+stylesheet << "<fills><fill/></fills>\n";
+stylesheet << "<borders><border/></borders>\n";
+stylesheet << ((const ITCellXFsFromTStyleSheet&)m_cellxfs).save();
+stylesheet << "</styleSheet>";
 archive.add_file( filename(), stylesheet.str() );
 return 0;
 }

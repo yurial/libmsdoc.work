@@ -21,6 +21,11 @@ int ITSharedStringObjectFromTSharedStrings::GetId() const
 return m_id;
 }
 
+void ITSharedStringObjectFromTSharedStrings::operator ++ ()
+{
+++m_id;
+}
+
 void ITSharedStringObjectFromTSharedStrings::operator -- ()
 {
 --m_id;

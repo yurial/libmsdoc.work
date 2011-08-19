@@ -18,6 +18,7 @@ public:
 
 void    SetId(int id);
 int     GetId() const;
+void    operator ++ ();
 void    operator -- ();
 
 virtual TString save() const = 0;
@@ -59,6 +60,7 @@ TString save() const;
 int id() const;
 
 public:
+        CFontObject();
         CFontObject(TString name, int size, TFontFlags flags);
         CFontObject(const CFontObject& origin);
 

@@ -1,0 +1,40 @@
+#include "ccellxf.h"
+
+CCellXF::CCellXF():
+    m_cellxfs( NULL )
+{
+}
+
+CCellXF::CCellXF(ITCellXFsFromTCellXF& cellxfs, const base& it):
+    base( it ), m_cellxfs( &cellxfs )
+{
+(*this)->Link();
+}
+
+CCellXF::CCellXF(const CCellXF& origin):
+    base( origin ), m_cellxfs( origin.m_cellxfs )
+{
+if ( IsSet() )
+    {
+    (*this)->Link();
+    }
+}
+
+CCellXF::~CCellXF()
+{
+if ( IsSet() && 0 == (*this)->UnLink() )
+    {
+    m_cellxfs->erase( *this );
+    }
+}
+
+int CCellXF::id() const
+{
+return ((const ITCellXFObjectFromTCellXF&)this->operator *()).id();
+}
+
+bool CCellXF::IsSet() const
+{
+return NULL != base::_M_node;
+}
+

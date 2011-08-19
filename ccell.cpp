@@ -41,3 +41,9 @@ CCell& CCell::operator = (const double value)
 return *this;
 }
 
+CCell& CCell::operator = (const TCellXF& cellxf)
+{
+(*this)->second.operator = ( cellxf );
+return *this;
+}
+

@@ -21,6 +21,11 @@ int ITFontObjectFromTFonts::GetId() const
 return m_id;
 }
 
+void ITFontObjectFromTFonts::operator ++ ()
+{
+++m_id;
+}
+
 void ITFontObjectFromTFonts::operator -- ()
 {
 --m_id;
@@ -44,6 +49,11 @@ void ITFontObjectFromTFont::Link() const
 int ITFontObjectFromTFont::UnLink() const
 {
 return --m_links;
+}
+
+CFontObject::CFontObject():
+    m_size( 0 )
+{
 }
 
 CFontObject::CFontObject(TString name, int size, TFontFlags flags):
@@ -96,13 +106,13 @@ TString CFontObject::save() const
 {
 std::stringstream font;
 font << "<font>\n";
-if ( 0 != m_name.size() )
-    {
-    font << "<name val=\"" << m_name << "\"/>\n";
-    }
 if ( 0 != m_size )
     {
     font << "<sz val=\"" << m_size << "\"/>\n";
+    }
+if ( 0 != m_name.size() )
+    {
+    font << "<name val=\"" << m_name << "\"/>\n";
     }
 font << ((const ITFontFlagsFromTFontObject&)m_flags).save();
 font << "</font>\n";

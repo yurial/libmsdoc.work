@@ -6,6 +6,8 @@ typedef CStyleSheet TStyleSheet;
 
 #include "cbaserelationshipobject.h"
 #include "cfonts.h"
+//#include "ccellstylexfs.h"
+#include "ccellxfs.h"
 
 class ITStyleSheetFromTWorkBook
 {
@@ -33,9 +35,9 @@ TFonts          m_fonts;
 //TFillStyles     //fills
 //TNumFormat      //numFmts
 //dxfs
-//TCellStyle  //cellXfs
+TCellXFs        m_cellxfs;  //cellXfs
 //cellStyles (Cell Styles)
-//cellStyleXfs (Formatting Records)
+//TCellStyleXFs   m_cellstylexfs;//cellStyleXfs (Formatting Records)
 //tableStyles (Table Styles)
 //colors (Colors)
 //extLst (Future Feature Data Storage Area)

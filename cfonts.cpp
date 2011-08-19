@@ -1,6 +1,16 @@
 #include <sstream>
 #include "cfonts.h"
 
+CFonts::CFonts()
+{
+base::insert( TFontObject() );
+}
+
+TFontsContainer::const_iterator CFonts::begin() const
+{
+return base::begin();
+}
+
 TFont CFonts::insert(TString name, int size, TFontFlags flags)
 {
 std::pair<base::iterator,bool> result = base::insert( TFontObject( name, size, flags ) );
@@ -8,8 +18,19 @@ base::iterator it = result.first;
 if ( result.second ) //new element
     {
     ((ITFontObjectFromTFonts&)*it).SetId( distance( base::begin(), it ) );
+    base::iterator pos = it;
+    base::iterator end = base::end();
+    while ( ++pos != end )
+        {
+        ++((ITFontObjectFromTFonts&)*pos);
+        }
     }
 return TFont( *this, it );
+}
+
+TFont CFonts::GetDefault() const
+{
+return TFont( (ITFontsFromTFont&)*this, base::begin() );
 }
 
 TString CFonts::save() const
@@ -29,14 +50,18 @@ if ( 0 < base::size() )
 return fonts.str();
 }
 
-void CFonts::erase(base::iterator it)
+void CFonts::erase(base::iterator font)
 {
-base::iterator pos = it;
-base::iterator end = base::end();
-while ( ++pos != end )
+if ( base::begin() == font )
     {
-    --((ITFontObjectFromTFonts&)*pos);
+    return;
     }
-base::erase( it );
+base::iterator it = font;
+base::iterator end = base::end();
+while ( ++it != end )
+    {
+    --((ITFontObjectFromTFonts&)*it);
+    }
+base::erase( font );
 }
 

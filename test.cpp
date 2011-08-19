@@ -9,7 +9,10 @@ int main()
 /* create document */
 TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
-TFont font = book.m_stylesheet.m_fonts.insert( "Times New Roman", 10, EFF_BOLD | EFF_ITALIC );
+/* font */
+TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_BOLD | EFF_ITALIC );
+/* cellxf */
+TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
@@ -24,6 +27,8 @@ TFormula frm( "=A1+B1" );
 TRow row0 = sheet1[ 0 ];
 /* get cell */
 TCell cell01 = row0[ 3 ];
+/* apply format */
+cell01 = cellfmt0;
 /* set shared string */
 cell01 = str1;
 row0[ "E" ] = str2;

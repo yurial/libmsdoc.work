@@ -19,6 +19,7 @@ class ITFontsFromTFont
 {
 public:
 virtual void erase(TFontsContainer::iterator it) = 0;
+virtual TFontsContainer::const_iterator begin() const = 0;
 };
 
 #include "cfont.h"
@@ -33,8 +34,11 @@ typedef TFontsContainer base;
 
 TString save() const;
 void    erase(base::iterator it);
+base::const_iterator begin() const;
 
 public:
+        CFonts();
+TFont   GetDefault() const;
 TFont   insert(TString name, int size, TFontFlags flags);
 };
 

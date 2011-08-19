@@ -9,6 +9,7 @@ typedef std::map<int,TCellObject> TCells;
 
 #include "crowobject.h"
 #include "ccellvalue.h"
+#include "ccellxf.h"
 
 TString ToStrId(int id);
 int     FromStrId(const TString& col);
@@ -34,6 +35,9 @@ protected:
 TRowObject&     m_row;
 int             m_id;
 
+TCellXF         m_cellxf;
+
+TString         s() const;
 int             id() const;
 TString         col() const;
 TString         cell() const;
@@ -43,6 +47,7 @@ public:
                 ~CCellObject();
 
 using TCellValue::operator =;
+CCellObject&    operator = (const TCellXF& cellxf);
 
 int             save(std::stringstream& row) const;
 };

@@ -18,6 +18,7 @@ public:
         
 void    SetId(int id);
 int     GetId() const;
+void    operator ++ ();
 void    operator -- ();
 
 virtual TString save() const = 0;

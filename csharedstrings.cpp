@@ -31,19 +31,25 @@ base::iterator it = result.first;
 if ( result.second )
     {
     ((ITSharedStringObjectFromTSharedStrings&)*it).SetId( distance( base::begin(), it ) );
+    base::iterator pos = it;
+    base::iterator end = base::end();
+    while( ++pos != end )
+        {
+        ++((ITSharedStringObjectFromTSharedStrings&)*it);
+        }
     }
 return TSharedString( *this, it );
 }
 
-void CSharedStrings::erase(base::iterator& it)
+void CSharedStrings::erase(base::iterator& sharedstring)
 {
-base::iterator pos = it;
+base::iterator it = sharedstring;
 base::iterator end = base::end();
-while ( ++pos != end )
+while ( ++it != end )
     {
-    --((ITSharedStringObjectFromTSharedStrings&)*pos);
+    --((ITSharedStringObjectFromTSharedStrings&)*it);
     }
-base::erase( it );
+base::erase( sharedstring );
 }
 
 const TString CSharedStrings::filename() const

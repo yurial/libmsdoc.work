@@ -1,3 +1,4 @@
+#include <sstream>
 #include "ccellobject.h"
 
 TString ToStrId(int id)
@@ -67,6 +68,17 @@ CCellObject::~CCellObject()
 {
 }
 
+TString CCellObject::s() const
+{
+std::stringstream s;
+ITCellXFFromTCellObject& icellxf = (ITCellXFFromTCellObject&)m_cellxf;
+if ( icellxf.IsSet() )
+    {
+    s << " s=\"" << icellxf.id() << '\"';
+    }
+return s.str();
+}
+
 int CCellObject::id() const
 {
 return m_id;
@@ -84,6 +96,12 @@ str << col() << m_row.row();
 return str.str();
 }
 
+CCellObject& CCellObject::operator = (const TCellXF& cellxf)
+{
+m_cellxf = cellxf;
+return *this;
+}
+
 int CCellObject::save(std::stringstream& row) const
 {
 if ( ECV_NONE == TCellValue::m_type )
@@ -91,7 +109,7 @@ if ( ECV_NONE == TCellValue::m_type )
     return 0;
     }
 
-row << "<c r=\"" << cell() << "\"" << t() << ">";
+row << "<c r=\"" << cell() << "\"" << t() << s() << ">";
 switch ( TCellValue::m_type )
     {
     case ECV_STRING:
