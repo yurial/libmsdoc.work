@@ -24,8 +24,11 @@ using base::operator ->;
 
 ITFontsFromTFont*   m_fonts;
 
+/* ITFontFromTCellXFObject */
 int     id() const;
 bool    IsSet() const;
+
+CFont&  operator |= (const CFont& rvalue);
 
 public:
         CFont();
@@ -33,7 +36,6 @@ public:
         CFont(const CFont& origin);
         ~CFont();
 
-CFont&  operator |= (const CFont& rvalue);
 bool    operator <  (const CFont& rvalue) const;
 };
 
