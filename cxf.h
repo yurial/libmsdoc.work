@@ -5,6 +5,7 @@ class CXF;
 typedef CXF TXF;
 
 #include "cfont.h"
+#include "cfill.h"
 
 class CXF
 {
@@ -13,8 +14,8 @@ protected:
 //extLst (Future Feature Data Storage Area) §18.2.10
 //protection (Protection Properties) §18.8.33
 //BorderId (BorderId) (§18.18.2)
-//fillId (Fill Id) (§18.18.30)
 TFont  m_font;  //(§18.18.32)
+TFill  m_fill;  //(§18.18.30)
 //numFmtId (§18.18.47)
 //pivotButton
 //quotePrefix
@@ -22,7 +23,7 @@ TFont  m_font;  //(§18.18.32)
 
 public:
         CXF();
-        CXF(const TFont& font/*,const TAlignment& align*//*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*/);
+        CXF(const TFont& font/*,const TAlignment& align*/, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*/);
 
 bool    operator <  (const CXF& rvalue) const;
 };

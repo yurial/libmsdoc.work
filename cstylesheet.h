@@ -6,6 +6,7 @@ typedef CStyleSheet TStyleSheet;
 
 #include "cbaserelationshipobject.h"
 #include "cfonts.h"
+#include "cfills.h"
 //#include "ccellstylexfs.h"
 #include "ccellxfs.h"
 
@@ -30,12 +31,12 @@ int             save(TZip& archive, TContent& content) const;
 public:
                 CStyleSheet(const TString& dir, TRelationShips& relationships);
 
-TFonts          m_fonts;
-//TBorderStyles   //borders
-//TFillStyles     //fills
 //TNumFormat      //numFmts
+TFonts          m_fonts;
+TFills          m_fills;
+//TBorderStyles   //borders
 //dxfs
-TCellXFs        m_cellxfs;  //cellXfs
+TCellXFs        m_cellxfs;
 //cellStyles (Cell Styles)
 //TCellStyleXFs   m_cellstylexfs;//cellStyleXfs (Formatting Records)
 //tableStyles (Table Styles)

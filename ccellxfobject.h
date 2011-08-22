@@ -48,7 +48,7 @@ typedef TXF base;
 
 using TXF::m_font;
 //using TXF::m_alignment;
-//using TXF::m_fill;
+using TXF::m_fill;
 //using TXF::m_border;
 //using TXF::m_numfmt;
 
@@ -62,7 +62,7 @@ int id() const;
 
 public:
         CCellXFObject();
-        CCellXFObject(const TFont& font/*,const TAlignment& align*//*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*//*,TCellStyleFX*/);
+        CCellXFObject(const TFont& font/*, const TAlignment& align*/, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*//*, const TCellStyleFX& cellstylexf*/);
         CCellXFObject(const CCellXFObject& origin);
 
 bool    operator <  (const CCellXFObject& rvalue) const;

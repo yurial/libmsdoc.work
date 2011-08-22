@@ -11,6 +11,11 @@ TFontsContainer::const_iterator CFonts::begin() const
 return base::begin();
 }
 
+TFont CFonts::insert()
+{
+return TFont( (ITFontsFromTFont&)*this, base::begin() );
+}
+
 TFont CFonts::insert(TString name, int size, TFontFlags flags)
 {
 std::pair<base::iterator,bool> result = base::insert( TFontObject( name, size, flags ) );
@@ -28,25 +33,17 @@ if ( result.second ) //new element
 return TFont( *this, it );
 }
 
-TFont CFonts::GetDefault() const
-{
-return TFont( (ITFontsFromTFont&)*this, base::begin() );
-}
-
 TString CFonts::save() const
 {
 std::stringstream fonts;
-if ( 0 < base::size() )
+fonts << "<fonts>\n";
+base::const_iterator it = base::begin();
+base::const_iterator end = base::end();
+for (; it != end; ++it)
     {
-    fonts << "<fonts>\n";
-    base::const_iterator it = base::begin();
-    base::const_iterator end = base::end();
-    for (; it != end; ++it)
-        {
-        fonts << ((ITFontObjectFromTFonts&)*it).save();
-        }
-    fonts << "</fonts>\n";
+    fonts << ((ITFontObjectFromTFonts&)*it).save();
     }
+fonts << "</fonts>\n";
 return fonts.str();
 }
 

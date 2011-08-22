@@ -11,8 +11,10 @@ TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
 /* font */
 TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_BOLD | EFF_ITALIC );
+/* fill */
+TFill fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor(), TColor(), EPATTERN_SOLID ) );
 /* cellxf */
-TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font );
+TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, fill );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 

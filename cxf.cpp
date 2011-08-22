@@ -4,8 +4,8 @@ CXF::CXF()
 {
 }
 
-CXF::CXF(const TFont& font/*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*/):
-    m_font( font )/*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*/
+CXF::CXF(const TFont& font, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*/):
+    m_font( font ), m_fill( fill )/*, m_border( border )*//*,const TNumFmt& numfmt*/
 {
 }
 
@@ -16,6 +16,14 @@ if ( m_font < rvalue.m_font )
     return true;
     }
 else if ( rvalue.m_font < m_font )
+    {
+    return false;
+    }
+else if ( m_fill < rvalue.m_fill )
+    {
+    return true;
+    }
+else if ( rvalue.m_fill < m_fill )
     {
     return false;
     }

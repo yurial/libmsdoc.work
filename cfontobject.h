@@ -54,17 +54,17 @@ TFontFlags  m_flags;
 //TODO: TVertalign      /vertAlign (Vertical Alignment) 18.4.14
 
 /* ITFontObjectFromTFonts */
-TString save() const;
+TString     save() const;
 
 /* ITFontObjectFromTFont */
-int id() const;
+int         id() const;
 
 public:
-        CFontObject();
-        CFontObject(TString name, int size, TFontFlags flags);
-        CFontObject(const CFontObject& origin);
+            CFontObject();
+            CFontObject(TString name, int size, TFontFlags flags);
+            CFontObject(const CFontObject& origin);
 
-bool    operator <  (const CFontObject& rvalue) const;
+bool        operator <  (const CFontObject& rvalue) const;
 };
 
 #endif

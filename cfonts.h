@@ -38,7 +38,7 @@ base::const_iterator begin() const;
 
 public:
         CFonts();
-TFont   GetDefault() const;
+TFont   insert();
 TFont   insert(TString name, int size, TFontFlags flags);
 };
 

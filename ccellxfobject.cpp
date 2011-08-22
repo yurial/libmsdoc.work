@@ -55,8 +55,8 @@ CCellXFObject::CCellXFObject()
 {
 }
 
-CCellXFObject::CCellXFObject(const TFont& font/*,const TAlignment& align*//*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*//*,TCellStyleFX*/):
-    base( font/*,const TAlignment& align*//*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*/ )/*, m_cellstylexf*/
+CCellXFObject::CCellXFObject(const TFont& font/*, const TAlignment& align*/, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*//*, const TCellStyleXF& cellstylexf*/):
+    base( font /*, align*/, fill/*, border*//*, numfmt*/ )/*, m_cellstylexf*/
 {
 }
 
@@ -93,17 +93,26 @@ TString CCellXFObject::save() const
 {
 std::stringstream xf;
 xf << "<xf";
-ITFontFromTCellXFObject& ifont = (ITFontFromTCellXFObject&)m_font;
 xf << " numFmtId=\"0\"";
+ITFontFromTCellXFObject& ifont = (ITFontFromTCellXFObject&)m_font;
 if ( ifont.IsSet() )
     {
-    xf << " fontId=\"" << ifont.id() << "\"";
+    xf << " fontId=\"" << ifont.id() << '\"';
     }
 else
     {
     xf << " fontId=\"0\"";
     }
-xf << " fillId=\"0\" borderId=\"0\"";
+ITFillFromTCellXFObject& ifill = (ITFillFromTCellXFObject&)m_fill;
+if ( ifill.IsSet() )
+    {
+    xf << " fillId=\"" << ifill.id() << '\"';
+    }
+else
+    {
+    xf << " fillId=\"0\"";
+    }
+xf << " borderId=\"0\" xfId=\"0\"";
 xf << "/>\n";
 return xf.str();
 }

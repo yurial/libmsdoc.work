@@ -6,9 +6,9 @@ CCellXFs::CCellXFs()
 base::insert( TCellXFObject() );
 }
 
-TCellXF TCellXFs::insert(const TFont& font/*,const TFill& fill*//*,const TBorder& border*//*,const TNumFmt& numfmt*//*,TCellStyle*/)
+TCellXF TCellXFs::insert(const TFont& font, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*//*, const TCellStyle& cellstyle*/)
 {
-std::pair<base::iterator,bool> result = base::insert( TCellXFObject( font ) );
+std::pair<base::iterator,bool> result = base::insert( TCellXFObject( font, fill ) );
 base::iterator it = result.first;
 if ( result.second )
     {
@@ -26,17 +26,14 @@ return TCellXF( *this, it );
 TString TCellXFs::save() const
 {
 std::stringstream cellxfs;
-if ( 0 < base::size() )
+cellxfs << "<cellXfs count=\"" << base ::size() << "\">\n";
+base::const_iterator it = base::begin();
+base::const_iterator end = base::end();
+for (; it != end; ++it )
     {
-    cellxfs << "<cellXfs count=\"" << base ::size() << "\">\n";
-    base::const_iterator it = base::begin();
-    base::const_iterator end = base::end();
-    for (; it != end; ++it )
-        {
-        cellxfs << ((ITCellXFObjectFromTCellXFs&)*it).save();
-        }
-    cellxfs << "</cellXfs>\n";
+    cellxfs << ((ITCellXFObjectFromTCellXFs&)*it).save();
     }
+cellxfs << "</cellXfs>\n";
 return cellxfs.str();
 }
 
