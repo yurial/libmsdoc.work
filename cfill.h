@@ -1,3 +1,5 @@
+#include "cfills.h"
+
 #ifndef CFILLH
 #define CFILLH
 
@@ -10,8 +12,6 @@ public:
 virtual int id() const = 0;
 virtual bool IsSet() const = 0;
 };
-
-#include "cfills.h"
 
 class CFill:
     public ITFillFromTCellXFObject,

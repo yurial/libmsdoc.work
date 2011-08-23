@@ -12,5 +12,7 @@ public:
     }
 };
 
+typedef CInitializer TInitializer;
+
 #endif
 

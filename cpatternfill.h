@@ -7,6 +7,10 @@ typedef CPatternFill TPatternFill;
 enum EPATTERN
 {
 EPATTERN_NONE,  //none
+
+EPATTERN_GRAY125,   //gray125 (Gray 0.125)
+EPARRERN_GRAY0625,  //gray0625 (Gray 0.0625)
+
 EPATTERN_SOLID, //solid
 
 EPATTERN_DARKDOWN,  //darkDown (Dark Down)
@@ -16,9 +20,6 @@ EPATTERN_DARKHORIZONTAL,//darkHorizontal (Dark Horizontal)
 EPATTERN_DARKTRELLIS,   //darkTrellis (Dark Trellis)
 EPATTERN_DARKUP,        //darkUp (Dark Up)
 EPATTERN_DARKVERTICAL,  //darkVertical (Dark Vertical)
-
-EPARRERNFILL_GRAY0625,  //gray0625 (Gray 0.0625)
-EPATTERN_GRAY125,   //gray125 (Gray 0.125)
 
 EPATTERN_LIGHTDOWN, //lightDown (Light Down)
 EPATTERN_LIGHTGRAY, //lightGray (Light Gray)

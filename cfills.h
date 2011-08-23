@@ -33,6 +33,9 @@ class CFills:
 protected:
 typedef TFillsContainer base;
 
+TFill   m_default0;
+TFill   m_default1;
+
 template <class T>
 TFill   base_insert(const T& fill);
 

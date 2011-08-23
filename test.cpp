@@ -12,7 +12,7 @@ TWorkBook& book = doc.m_workbook;
 /* font */
 TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_BOLD | EFF_ITALIC );
 /* fill */
-TFill fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor(), TColor(), EPATTERN_SOLID ) );
+TFill fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0x00FF0000 ), TColor(), EPATTERN_SOLID ) );
 /* cellxf */
 TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, fill );
 /* create new sheet */

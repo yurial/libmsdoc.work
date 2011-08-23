@@ -1,9 +1,10 @@
 #include <sstream>
 #include "cfills.h"
 
-CFills::CFills()
+CFills::CFills():
+    m_default0( *this, base::insert( TFillObject( TPatternFill( TColor(), TColor(), EPATTERN_NONE) ) ).first ),
+    m_default1( *this, base::insert( TFillObject( TPatternFill( TColor(), TColor(), EPATTERN_GRAY125) ) ).first )
 {
-base::insert( TFillObject() );
 }
 
 TFill CFills::insert()
@@ -46,10 +47,6 @@ return base_insert( fill );
 
 void CFills::erase(base::iterator& fill)
 {
-if ( base::begin() == fill )
-    {
-    return;
-    }
 base::iterator it = fill;
 base::iterator end = base::end();
 while ( ++it != end )

@@ -9,7 +9,13 @@ typedef CColor TColor;
 class CColor
 {
 protected:
+int     m_rgb;
+
 public:
+        CColor();
+        CColor(int rgb);
+
+bool    operator <  (const CColor& rvalue) const;
 
 TString save() const;
 };
