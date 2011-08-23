@@ -12,9 +12,11 @@ TWorkBook& book = doc.m_workbook;
 /* font */
 TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_BOLD | EFF_ITALIC );
 /* fill */
-TFill fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0x00FF0000 ), TColor(), EPATTERN_SOLID ) );
+TFill red_fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0x00FF0000 ), TColor(), EPATTERN_SOLID ) );
+TFill yellow_fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0xFFFF00 ), TColor(), EPATTERN_SOLID ) );
 /* cellxf */
-TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, fill );
+TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, red_fill );
+TCellXF cellfmt1 = book.m_stylesheet.m_cellxfs.insert( font, yellow_fill );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
@@ -31,6 +33,7 @@ TRow row0 = sheet1[ 0 ];
 TCell cell01 = row0[ 3 ];
 /* apply format */
 cell01 = cellfmt0;
+row0[ 1 ] = cellfmt1;
 /* set shared string */
 cell01 = str1;
 row0[ "E" ] = str2;

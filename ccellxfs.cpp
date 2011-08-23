@@ -17,7 +17,7 @@ if ( result.second )
     base::iterator end = base::end();
     while( ++pos != end )
         {
-        ++((ITCellXFObjectFromTCellXFs&)*it);
+        ++((ITCellXFObjectFromTCellXFs&)*pos);
         }
     }
 return TCellXF( *this, it );
