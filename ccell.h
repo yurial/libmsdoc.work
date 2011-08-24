@@ -30,6 +30,8 @@ CCell&  operator = (const int value);
 CCell&  operator = (const double value);
 
 CCell&  operator = (const TCellXF& cellxf);
+
+TString cell() const;
 };
 
 #endif

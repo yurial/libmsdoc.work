@@ -9,6 +9,7 @@ typedef CColor TColor;
 class CColor
 {
 protected:
+bool    m_set;
 int     m_rgb;
 
 public:
@@ -18,6 +19,7 @@ public:
 bool    operator <  (const CColor& rvalue) const;
 
 TString save() const;
+bool    IsSet() const;
 };
 
 #endif

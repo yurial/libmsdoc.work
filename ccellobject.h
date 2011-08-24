@@ -38,9 +38,6 @@ int             m_id;
 TCellXF         m_cellxf;
 
 TString         s() const;
-int             id() const;
-TString         col() const;
-TString         cell() const;
 
 public:
                 CCellObject(TRowObject& row, int id);
@@ -48,6 +45,10 @@ public:
 
 using TCellValue::operator =;
 CCellObject&    operator = (const TCellXF& cellxf);
+
+int             id() const;
+TString         col() const;
+TString         cell() const;
 
 int             save(std::stringstream& row) const;
 };

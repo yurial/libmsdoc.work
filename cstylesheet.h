@@ -7,6 +7,7 @@ typedef CStyleSheet TStyleSheet;
 #include "cbaserelationshipobject.h"
 #include "cfonts.h"
 #include "cfills.h"
+#include "cborders.h"
 //#include "ccellstylexfs.h"
 #include "ccellxfs.h"
 
@@ -34,7 +35,7 @@ public:
 //TNumFormat      //numFmts
 TFonts          m_fonts;
 TFills          m_fills;
-//TBorderStyles   //borders
+TBorders        m_borders;
 //dxfs
 TCellXFs        m_cellxfs;
 //cellStyles (Cell Styles)

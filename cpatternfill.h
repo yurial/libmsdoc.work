@@ -55,7 +55,9 @@ bool    operator <  (const CPatternFill& rvalue) const;
 TString save() const;
 
 public:
+        CPatternFill();
         CPatternFill(const TColor& fg, const TColor& bg, EPATTERN pattern);
+bool    IsSet() const;
 };
 
 #endif

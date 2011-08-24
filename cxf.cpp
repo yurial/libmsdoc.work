@@ -4,8 +4,8 @@ CXF::CXF()
 {
 }
 
-CXF::CXF(const TFont& font, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*/):
-    m_font( font ), m_fill( fill )/*, m_border( border )*//*,const TNumFmt& numfmt*/
+CXF::CXF(const TFont& font, const TFill& fill, const TBorder& border/*, const TNumFmt& numfmt*/):
+    m_font( font ), m_fill( fill ), m_border( border )/*,const TNumFmt& numfmt*/
 {
 }
 
@@ -27,9 +27,14 @@ else if ( rvalue.m_fill < m_fill )
     {
     return false;
     }
-/*
-else if ()
-*/
+else if ( m_border < rvalue.m_border )
+    {
+    return true;
+    }
+else if ( rvalue.m_border < m_border)
+    {
+    return false;
+    }
 return false;
 }
 

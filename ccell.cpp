@@ -47,3 +47,8 @@ CCell& CCell::operator = (const TCellXF& cellxf)
 return *this;
 }
 
+TString CCell::cell() const
+{
+return (*this)->second.cell();
+}
+

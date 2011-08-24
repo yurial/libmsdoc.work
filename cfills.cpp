@@ -2,7 +2,7 @@
 #include "cfills.h"
 
 CFills::CFills():
-    m_default0( *this, base::insert( TFillObject( TPatternFill( TColor(), TColor(), EPATTERN_NONE) ) ).first ),
+    m_default0( *this, base::insert( TFillObject( TPatternFill() ) ).first ),
     m_default1( *this, base::insert( TFillObject( TPatternFill( TColor(), TColor(), EPATTERN_GRAY125) ) ).first )
 {
 }

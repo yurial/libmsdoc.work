@@ -6,9 +6,9 @@ CCellXFs::CCellXFs()
 base::insert( TCellXFObject() );
 }
 
-TCellXF TCellXFs::insert(const TFont& font, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*//*, const TCellStyle& cellstyle*/)
+TCellXF TCellXFs::insert(const TFont& font, const TFill& fill, const TBorder& border/*, const TNumFmt& numfmt*//*, const TCellStyle& cellstyle*/)
 {
-std::pair<base::iterator,bool> result = base::insert( TCellXFObject( font, fill ) );
+std::pair<base::iterator,bool> result = base::insert( TCellXFObject( font, fill, border ) );
 base::iterator it = result.first;
 if ( result.second )
     {

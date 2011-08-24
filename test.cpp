@@ -10,13 +10,15 @@ int main()
 TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
 /* font */
-TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_BOLD | EFF_ITALIC );
+TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_NONE );
 /* fill */
-TFill red_fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0x00FF0000 ), TColor(), EPATTERN_SOLID ) );
+TFill red_fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0x00FF0000 ), TColor( 0xFFFF00 ), EPATTERN_GRAY125 ) );
 TFill yellow_fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0xFFFF00 ), TColor(), EPATTERN_SOLID ) );
+/* border */
+TBorder border = book.m_stylesheet.m_borders.insert( TBorderLine( EBORDERSTYLE_THIN ), TBorderLine( EBORDERSTYLE_THIN ), TBorderLine( EBORDERSTYLE_THIN ), TBorderLine( EBORDERSTYLE_THIN ), TBorderLine(), false, false, false );
 /* cellxf */
-TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, red_fill );
-TCellXF cellfmt1 = book.m_stylesheet.m_cellxfs.insert( font, yellow_fill );
+TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, red_fill, TBorder() );
+TCellXF cellfmt1 = book.m_stylesheet.m_cellxfs.insert( font, yellow_fill, border );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
@@ -48,9 +50,19 @@ sheet1[ 0 ][ "C" ] = frm;
 /* set date */
 //sheet1[ 1 ][ "B" ] = TDate( time(NULL) );
 
-//TSpreadSheet sheet2 = book.m_spreadsheets.insert( "sheet2" );
+/*
+TSpreadSheet sheet2 = book.m_spreadsheets.insert();
+for (int y = 0; y < 10 * 1000; ++y)
+    for (int x = 0; x < 255; ++x)
+        {
+        TCell cell = sheet2[ y ][ x ];
+        cell = ( (y+x) % 2 )? cellfmt0 : cellfmt1;
+        cell = cell.cell();
+        }
+*/
 
 book.insert( sheet1, "Sheet1" );
+//book.insert( sheet2, "Sheet2" );
 return doc.save( "test.zip" );
 };
 

@@ -44,7 +44,7 @@ void        erase(base::iterator& cellfx);
 
 public:
             CCellXFs();
-TCellXF     insert(const TFont& font, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*//*, const TCellStyle& cellstyle*/);
+TCellXF     insert(const TFont& font, const TFill& fill, const TBorder& border/*, const TNumFmt& numfmt*//*, const TCellStyle& cellstyle*/);
 };
 
 #endif

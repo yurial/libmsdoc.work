@@ -25,7 +25,7 @@ stylesheet << "<styleSheet xmlns=\"" << g_contenttypes[ type() ].m_namespace << 
 //stylesheet << ((const ITNumFmtsFromTStyleSheet&)m_numFmts).save();
 stylesheet << ((const ITFontsFromTStyleSheet&)m_fonts).save();
 stylesheet << ((const ITFillsFromTStyleSheet&)m_fills).save();
-stylesheet << "<borders><border/></borders>\n";
+stylesheet << ((const ITBordersFromTStyleSheet&)m_borders).save();
 stylesheet << ((const ITCellXFsFromTStyleSheet&)m_cellxfs).save();
 stylesheet << "</styleSheet>";
 archive.add_file( filename(), stylesheet.str() );

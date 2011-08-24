@@ -48,6 +48,11 @@ for (unsigned int pos = 0; pos < sizeof(g_patterns)/sizeof(SPatternString); ++po
 
 static TInitializer g_patterntype_init( patterntypes_init_f );
 
+CPatternFill::CPatternFill():
+    m_pattern( EPATTERN_NONE )
+{
+}
+
 CPatternFill::CPatternFill(const TColor& fg, const TColor& bg, EPATTERN pattern):
     m_fg( fg ), m_bg( bg ), m_pattern( pattern )
 {
@@ -84,20 +89,36 @@ return false;
 
 TString CPatternFill::save() const
 {
+if ( !IsSet() )
+    {
+    return TString();
+    }
+
 std::stringstream fill;
 fill << "<patternFill patternType=\"";
 fill << g_patterntypes[ m_pattern ];
 fill << "\">\n";
 
-fill << "<fgColor";
-fill << m_fg.save();
-fill << "/>\n";
+if ( m_fg.IsSet() )
+    {
+    fill << "<fgColor";
+    fill << m_fg.save();
+    fill << "/>\n";
+    }
 
-fill << "<bgColor";
-fill << m_bg.save();
-fill << "/>\n";
+if ( m_bg.IsSet() )
+    {
+    fill << "<bgColor";
+    fill << m_bg.save();
+    fill << "/>\n";
+    }
 
 fill << "</patternFill>\n";
 return fill.str();
+}
+
+bool CPatternFill::IsSet() const
+{
+return EPATTERN_NONE != m_pattern || m_fg.IsSet() || m_bg.IsSet();
 }
 

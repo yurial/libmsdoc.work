@@ -172,9 +172,16 @@ switch( m_type )
         break;
     case EFILL_PATTERN:
         {
-        fill << "<fill>\n";
-        fill << ((ITPatternFillFromTFillObject*)m_object)->save();
-        fill << "</fill>\n";
+        if ( ((TPatternFill*)m_object)->IsSet() )
+            {
+            fill << "<fill>\n";
+            fill << ((ITPatternFillFromTFillObject*)m_object)->save();
+            fill << "</fill>\n";
+            }
+        else
+            {
+            fill << "<fill/>\n";
+            }
         }
         break;
     case EFILL_NONE:

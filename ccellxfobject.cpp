@@ -55,8 +55,8 @@ CCellXFObject::CCellXFObject()
 {
 }
 
-CCellXFObject::CCellXFObject(const TFont& font/*, const TAlignment& align*/, const TFill& fill/*, const TBorder& border*//*, const TNumFmt& numfmt*//*, const TCellStyleXF& cellstylexf*/):
-    base( font /*, align*/, fill/*, border*//*, numfmt*/ )/*, m_cellstylexf*/
+CCellXFObject::CCellXFObject(const TFont& font/*, const TAlignment& align*/, const TFill& fill, const TBorder& border/*, const TNumFmt& numfmt*//*, const TCellStyleXF& cellstylexf*/):
+    base( font /*, align*/, fill, border/*, numfmt*/ )/*, m_cellstylexf*/
 {
 }
 
@@ -112,7 +112,15 @@ else
     {
     xf << " fillId=\"0\"";
     }
-xf << " borderId=\"0\" xfId=\"0\"";
+ITBorderFromTCellXFObject& iborder = (ITBorderFromTCellXFObject&)m_border;
+if ( iborder.IsSet() )
+    {
+    xf << " borderId=\"" << iborder.id() << '\"';
+    }
+else
+    {
+    xf << " borderId=\"0\"";
+    }
 xf << "/>\n";
 return xf.str();
 }
