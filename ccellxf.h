@@ -25,6 +25,9 @@ ITCellXFsFromTCellXF*   m_cellxfs;
 int     id() const;
 bool    IsSet() const;
 
+void    Link() const;
+void    UnLink() const;
+
 public:
         CCellXF();
         CCellXF(ITCellXFsFromTCellXF& cellxfs, const base& it);

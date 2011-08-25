@@ -9,11 +9,21 @@ CFont::CFont():
 CFont::CFont(ITFontsFromTFont& fonts, const base& it):
     base( it ), m_fonts( &fonts )
 {
-(*this)->Link();
+Link();
 }
 
 CFont::CFont(const CFont& origin):
     base( origin ), m_fonts( origin.m_fonts )
+{
+Link();
+}
+
+CFont::~CFont()
+{
+UnLink();
+}
+
+void CFont::Link() const
 {
 if ( IsSet() )
     {
@@ -21,7 +31,7 @@ if ( IsSet() )
     }
 }
 
-CFont::~CFont()
+void CFont::UnLink() const
 {
 if ( IsSet() && 0 == (*this)->UnLink() )
     {
@@ -35,6 +45,15 @@ if ( rvalue.IsSet() )
     {
     this->base::operator = ( rvalue );
     }
+return *this;
+}
+
+CFont& CFont::operator = (const CFont& rvalue)
+{
+rvalue.Link();
+UnLink();
+base::operator = ( rvalue );
+m_fonts = rvalue.m_fonts;
 return *this;
 }
 

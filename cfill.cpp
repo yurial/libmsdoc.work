@@ -8,27 +8,43 @@ CFill::CFill():
 CFill::CFill(ITFillsFromTFill& fills, const TFillsContainer::iterator& it):
     base( it ), m_fills( &fills )
 {
-if ( IsSet() )
-    {
-    (*this)->Link();
-    }
+Link();
 }
 
 CFill::CFill(const CFill& origin):
     base( origin ), m_fills( origin.m_fills )
 {
+Link();
+}
+
+CFill::~CFill()
+{
+UnLink();
+}
+
+void CFill::Link() const
+{
 if ( IsSet() )
     {
     (*this)->Link();
     }
 }
 
-CFill::~CFill()
+void CFill::UnLink() const
 {
 if ( IsSet() )
     {
     (*this)->UnLink();
     }
+}
+
+CFill& CFill::operator = (const CFill& rvalue)
+{
+rvalue.Link();
+UnLink();
+base::operator = ( rvalue );
+m_fills = rvalue.m_fills;
+return *this;
 }
 
 bool CFill::operator <  (const CFill& rvalue) const

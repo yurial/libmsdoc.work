@@ -8,27 +8,43 @@ CBorder::CBorder():
 CBorder::CBorder(ITBordersFromTBorder& borders, const TBordersContainer::iterator& it):
     base( it ), m_borders( &borders )
 {
-if ( IsSet() )
-    {
-    (*this)->Link();
-    }
+Link();
 }
 
 CBorder::CBorder(const CBorder& origin):
     base( origin ), m_borders( origin.m_borders )
 {
+Link();
+}
+
+CBorder::~CBorder()
+{
+UnLink();
+}
+
+void CBorder::Link() const
+{
 if ( IsSet() )
     {
     (*this)->Link();
     }
 }
 
-CBorder::~CBorder()
+void CBorder::UnLink() const
 {
 if ( IsSet() )
     {
     (*this)->UnLink();
     }
+}
+
+CBorder& CBorder::operator = (const CBorder& rvalue)
+{
+rvalue.Link();
+UnLink();
+base::operator = ( rvalue );
+m_borders = rvalue.m_borders;
+return *this;
 }
 
 bool CBorder::operator < (const CBorder& rvalue) const

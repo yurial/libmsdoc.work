@@ -28,6 +28,9 @@ ITFontsFromTFont*   m_fonts;
 int     id() const;
 bool    IsSet() const;
 
+void    Link() const;
+void    UnLink() const;
+
 CFont&  operator |= (const CFont& rvalue);
 
 public:
@@ -36,6 +39,7 @@ public:
         CFont(const CFont& origin);
         ~CFont();
 
+CFont&  operator = (const CFont& rvalue);
 bool    operator <  (const CFont& rvalue) const;
 };
 

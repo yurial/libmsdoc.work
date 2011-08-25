@@ -27,12 +27,16 @@ ITBordersFromTBorder*    m_borders;
 int     id() const;
 bool    IsSet() const;
 
+void    Link() const;
+void    UnLink() const;
+
 public:
         CBorder();
         CBorder(ITBordersFromTBorder& borders, const TBordersContainer::iterator& it);
         CBorder(const CBorder& origin);
         ~CBorder();
 
+CBorder&operator =  (const CBorder& rvalue);
 bool    operator <  (const CBorder& rvalue) const;
 };
 

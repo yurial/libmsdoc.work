@@ -27,12 +27,16 @@ ITFillsFromTFill*   m_fills;
 int     id() const;
 bool    IsSet() const;
 
+void    Link() const;
+void    UnLink() const;
+
 public:
         CFill();
         CFill(ITFillsFromTFill& fills, const TFillsContainer::iterator& it);
         CFill(const CFill& origin);
         ~CFill();
 
+CFill&  operator =  (const CFill& rvalue);
 bool    operator <  (const CFill& rvalue) const;
 };
 

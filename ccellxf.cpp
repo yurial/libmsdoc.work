@@ -8,11 +8,21 @@ CCellXF::CCellXF():
 CCellXF::CCellXF(ITCellXFsFromTCellXF& cellxfs, const base& it):
     base( it ), m_cellxfs( &cellxfs )
 {
-(*this)->Link();
+Link();
 }
 
 CCellXF::CCellXF(const CCellXF& origin):
     base( origin ), m_cellxfs( origin.m_cellxfs )
+{
+Link();
+}
+
+CCellXF::~CCellXF()
+{
+UnLink();
+}
+
+void CCellXF::Link() const
 {
 if ( IsSet() )
     {
@@ -20,11 +30,11 @@ if ( IsSet() )
     }
 }
 
-CCellXF::~CCellXF()
+void CCellXF::UnLink() const
 {
 if ( IsSet() && 0 == (*this)->UnLink() )
     {
-    m_cellxfs->erase( *this );
+    (*this)->UnLink();
     }
 }
 
