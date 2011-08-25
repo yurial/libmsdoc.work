@@ -30,6 +30,8 @@ public:
         CCellXF(ITCellXFsFromTCellXF& cellxfs, const base& it);
         CCellXF(const CCellXF& origin);
         ~CCellXF();
+
+CCellXF&    operator = (const CCellXF& rvalue);
 };
 
 #endif

@@ -28,6 +28,15 @@ if ( IsSet() && 0 == (*this)->UnLink() )
     }
 }
 
+CCellXF& CCellXF::operator = (const CCellXF& rvalue)
+{
+rvalue.Link();
+UnLink();
+base::operator = ( rvalue );
+m_cellxfs = rvalue.m_cellxfs;
+return *this;
+}
+
 int CCellXF::id() const
 {
 return ((const ITCellXFObjectFromTCellXF&)this->operator *()).id();
