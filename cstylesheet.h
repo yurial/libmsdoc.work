@@ -5,6 +5,7 @@ class CStyleSheet;
 typedef CStyleSheet TStyleSheet;
 
 #include "cbaserelationshipobject.h"
+#include "cnumfmts.h"
 #include "cfonts.h"
 #include "cfills.h"
 #include "cborders.h"
@@ -32,7 +33,7 @@ int             save(TZip& archive, TContent& content) const;
 public:
                 CStyleSheet(const TString& dir, TRelationShips& relationships);
 
-//TNumFormat      //numFmts
+TNumFmts        m_numfmts;
 TFonts          m_fonts;
 TFills          m_fills;
 TBorders        m_borders;

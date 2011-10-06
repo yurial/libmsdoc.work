@@ -47,10 +47,10 @@ protected:
 typedef TXF base;
 
 using TXF::m_font;
-//using TXF::m_alignment;
+using TXF::m_align;
 using TXF::m_fill;
 using TXF::m_border;
-//using TXF::m_numfmt;
+using TXF::m_numfmt;
 
 //TCellStyleFX    m_cellstylefx;
 
@@ -61,8 +61,7 @@ TString save() const;
 int id() const;
 
 public:
-        CCellXFObject();
-        CCellXFObject(const TFont& font/*, const TAlignment& align*/, const TFill& fill, const TBorder& border/*, const TNumFmt& numfmt*//*, const TCellStyleFX& cellstylexf*/);
+        CCellXFObject(const TFont& font = TFont(), const TAlignment& align = TAlignment(), const TBorder& border = TBorder(), const TFill& fill = TFill(), const TNumFmt& numfmt = TNumFmt()/*, const TCellStyleFX& cellstylexf*/);
         CCellXFObject(const CCellXFObject& origin);
 
 bool    operator <  (const CCellXFObject& rvalue) const;

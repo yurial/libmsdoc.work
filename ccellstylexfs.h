@@ -9,10 +9,10 @@ typedef TCellStyleXFs TCellStyle;
 
 #include "cxf.h"
 
-typedef std::set<TXF> TCellStyleXFContainet;
+typedef std::set<TXF> TCellStyleXFContainer;
 
 class CCellStyleXfs:
-    protected TCellStyleXFContainet
+    protected TCellStyleXFContainer
 {
 protected:
 

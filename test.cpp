@@ -9,6 +9,8 @@ int main()
 /* create document */
 TDocXLSX doc;
 TWorkBook& book = doc.m_workbook;
+/* numfmt */
+TNumFmt numfmt = book.m_stylesheet.m_numfmts.insert( "#,###.00_);[Red](#,###.00);0.00;&quot;sales &quot;@" );
 /* font */
 TFont font = book.m_stylesheet.m_fonts.insert( "Tahoma", 10, EFF_NONE );
 /* fill */
@@ -17,8 +19,8 @@ TFill yellow_fill = book.m_stylesheet.m_fills.insert( TPatternFill( TColor( 0xFF
 /* border */
 TBorder border = book.m_stylesheet.m_borders.insert( TBorderLine( EBORDERSTYLE_THIN ), TBorderLine( EBORDERSTYLE_THIN ), TBorderLine( EBORDERSTYLE_THIN ), TBorderLine( EBORDERSTYLE_THIN ), TBorderLine(), false, false, false );
 /* cellxf */
-TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, red_fill, TBorder() );
-TCellXF cellfmt1 = book.m_stylesheet.m_cellxfs.insert( font, yellow_fill, border );
+TCellXF cellfmt0 = book.m_stylesheet.m_cellxfs.insert( font, TAlignment( EHORIZONTAL_CENTER, EVERTICAL_CENTER, false, false, 360 ), TBorder(), red_fill );
+TCellXF cellfmt1 = book.m_stylesheet.m_cellxfs.insert( font, TAlignment(), border, yellow_fill, numfmt );
 /* create new sheet */
 TSpreadSheet sheet1 = book.m_spreadsheets.insert();
 
@@ -50,19 +52,17 @@ sheet1[ 0 ][ "C" ] = frm;
 /* set date */
 //sheet1[ 1 ][ "B" ] = TDate( time(NULL) );
 
-/*
 TSpreadSheet sheet2 = book.m_spreadsheets.insert();
-for (int y = 0; y < 10 * 1000; ++y)
-    for (int x = 0; x < 255; ++x)
+for (int y = 0; y < 1 * 100; ++y)
+    for (int x = 0; x < 100; ++x)
         {
         TCell cell = sheet2[ y ][ x ];
         cell = ( (y+x) % 2 )? cellfmt0 : cellfmt1;
         cell = cell.cell();
         }
-*/
 
 book.insert( sheet1, "Sheet1" );
-//book.insert( sheet2, "Sheet2" );
+book.insert( sheet2, "Sheet2" );
 return doc.save( "test.zip" );
 };
 

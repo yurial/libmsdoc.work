@@ -1,4 +1,3 @@
-#include <signal.h>
 #include "cfont.h"
 
 CFont::CFont():
